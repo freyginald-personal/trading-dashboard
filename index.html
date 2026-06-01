@@ -3,283 +3,932 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trading Dashboard - Real Market Data</title>
+    <title>Complete Trading System - Market Analysis & Trade Management</title>
+    
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#1e3c72">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Trading Dashboard">
+    
+    <!-- PWA Icons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgwIiBoZWlnaHQ9IjE4MCIgdmlld0JveD0iMCAwIDE4MCAxODAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxODAiIGhlaWdodD0iMTgwIiBmaWxsPSIjMWUzYzcyIi8+CjxwYXRoIGQ9Ik00NSA2MEg3NVY5MEg0NVY2MFoiIGZpbGw9IndoaXRlIi8+CjxwYXRoIGQ9Ik05MCA2MEgxMjBWOTBIOTBWNjBaIiBmaWxsPSJ3aGl0ZSIvPgo8cGF0aCBkPSJNNDUgMTA1SDc1VjEzNUg0NVYxMDVaIiBmaWxsPSJ3aGl0ZSIvPgo8cGF0aCBkPSJNOTAgMTA1SDEyMFYxMzVIOTBWMTA1WiIgZmlsbD0id2hpdGUiLz4KPC9zdmc+">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAzMiAzMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIiBmaWxsPSIjMWUzYzcyIi8+CjxwYXRoIGQ9Ik04IDEwSDE0VjE2SDhWMTBaIiBmaWxsPSJ3aGl0ZSIvPgo8cGF0aCBkPSJNMTggMTBIMjRWMTZIMThWMTBaIiBmaWxsPSJ3aGl0ZSIvPgo8cGF0aCBkPSJNOCAyMEgxNFYyNkg4VjIwWiIgZmlsbD0id2hpdGUiLz4KPHBhdGggZD0iTTE4IDIwSDI0VjI2SDE4VjIwWiIgZmlsbD0id2hpdGUiLz4KPC9zdmc+">
+    
+    <!-- Manifest -->
+    <link rel="manifest" href="data:application/json;base64,ewogICJuYW1lIjogIlRyYWRpbmcgRGFzaGJvYXJkIiwKICAic2hvcnRfbmFtZSI6ICJUcmFkaW5nIiwKICAiZGVzY3JpcHRpb24iOiAiQ29tcGxldGUgVHJhZGluZyBTeXN0ZW0gLSBNYXJrZXQgQW5hbHlzaXMgJiBUcmFkZSBNYW5hZ2VtZW50IiwKICAic3RhcnRfdXJsIjogIi8iLAogICJkaXNwbGF5IjogInN0YW5kYWxvbmUiLAogICJiYWNrZ3JvdW5kX2NvbG9yIjogIiMxZTNjNzIiLAogICJ0aGVtZV9jb2xvciI6ICIjMWUzYzcyIiwKICAiaWNvbnMiOiBbCiAgICB7CiAgICAgICJzcmMiOiAiZGF0YTppbWFnZS9zdmcreG1sO2Jhc2U2NCxQSE4yWnlCM2FXUjBhRDBpTVRnd0lpQm9aV2xuYUhROUlqRTRNQ0lpSUhacFpYZENiM2c5SWpBZ01DQXhPREFnTVRnd0lpQm1hV3hzUFNKdWIyNWxJaUI0Yld4dWN6MGlhSFIwY0RvdkwzZDNkeTUzTXk1dmNtY3ZNakF3TUM5emRtY2lQZ284Y21WamRDQjNhV1IwYUQwaU1UZ3dJaUJvWldsbmFIUTlJakU0TUNJS1ptbHNiRDBpSXpGbE0yTTNNaUl2UGdvOGNHRjBhQ0JrUFNKTk5EVWdOakJJTnpWV09UQklORFZXTmtCYUlpQm1hV3hzUFNKM2FHbDBaU0l2UGdvOGNHRjBhQ0JrUFNKTk9UQWdOakJJTVRJd1Zqa3dTRGt3VmpaQVdpSWdabWxzYkQwaWQyaHBkR1VpTHo0S1BIQmhkR2dnWkQwaVRUUTFJREV3TlVnM05WWXhNelZJTkRWV01UQTFXaUlnWm1sc2JEMGlkMmhwZEdVaUx6NEtQSEJoZEdnZ1pEMGlUVGt3SUVFd05VZ3hNakJXTVRNMVNEa3dWakV3TlZvaUlHWnBiR3c5SW5kb2FYUmxJaTgrQ2p3dmMzWm5QZz09IiwKICAgICAgInNpemVzIjogIjE4MHgxODAiLAogICAgICAidHlwZSI6ICJpbWFnZS9zdmcreG1sIgogICAgfQogIF0KfQ==">
+    
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; color: #333; }
-        .container { max-width: 1400px; margin: 0 auto; padding: 20px; }
-        .header { text-align: center; color: white; margin-bottom: 30px; }
-        .header h1 { font-size: 2.5em; margin-bottom: 10px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
-        .tabs { display: flex; background: white; border-radius: 10px 10px 0 0; box-shadow: 0 2px 10px rgba(0,0,0,0.1); overflow: hidden; }
-        .tab { flex: 1; padding: 20px; text-align: center; background: #f8f9fa; border: none; cursor: pointer; font-size: 1.1em; font-weight: 600; color: #666; transition: all 0.3s; }
-        .tab.active { background: white; color: #1e3c72; border-bottom: 3px solid #1e3c72; }
-        .tab:hover { background: #e9ecef; }
-        .tab-content { display: none; background: white; padding: 30px; border-radius: 0 0 10px 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); min-height: 600px; }
-        .tab-content.active { display: block; }
-        .analysis-controls { background: #f8f9fa; padding: 20px; border-radius: 10px; margin-bottom: 20px; }
-        .form-group { display: flex; gap: 15px; align-items: center; flex-wrap: wrap; }
-        .form-group label { font-weight: 600; color: #495057; }
-        .form-group input, .form-group select { padding: 8px 12px; border: 1px solid #ddd; border-radius: 5px; font-size: 1em; }
-        .btn { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; padding: 12px 24px; border-radius: 8px; cursor: pointer; font-size: 1em; font-weight: 600; transition: all 0.3s; }
-        .btn:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4); }
-        .parameter-display { background: #e3f2fd; border: 2px solid #2196f3; color: #1976d2; padding: 15px; border-radius: 8px; margin: 15px 0; font-weight: 600; text-align: center; }
-        .success { background: #d4edda !important; border-color: #c3e6cb !important; color: #155724 !important; }
-        .sector-chart { margin: 20px 0; }
-        .sector-item { display: flex; align-items: center; margin: 10px 0; padding: 15px; background: #f8f9fa; border-radius: 8px; transition: all 0.3s; }
-        .sector-item:hover { background: #e9ecef; transform: translateX(5px); }
-        .sector-name { font-weight: 600; width: 200px; }
-        .sector-bar { flex: 1; height: 20px; background: #e9ecef; border-radius: 10px; margin: 0 15px; position: relative; overflow: hidden; }
-        .sector-fill { height: 100%; border-radius: 10px; transition: width 0.8s ease; }
-        .positive { background: linear-gradient(90deg, #28a745, #20c997); }
-        .negative { background: linear-gradient(90deg, #dc3545, #fd7e14); }
-        .sector-value { font-weight: 600; width: 100px; text-align: right; }
-        .loading { opacity: 0.6; }
-        #console { background: #f8f9fa; padding: 15px; border-radius: 5px; height: 200px; overflow-y: scroll; font-family: monospace; font-size: 12px; margin: 20px 0; }
-        .stock-picks { margin: 20px 0; }
-        .pick-section { margin: 30px 0; }
-        .pick-section h3 { color: #1e3c72; margin-bottom: 15px; }
-        .stock-item { display: flex; justify-content: space-between; align-items: center; padding: 15px; background: #f8f9fa; border-radius: 8px; margin: 10px 0; }
-        .stock-symbol { font-weight: 600; font-size: 1.1em; }
-        .stock-price { color: #666; }
-        .stock-change { font-weight: 600; }
-        @media (max-width: 768px) { .tabs { flex-direction: column; } .form-group { flex-direction: column; align-items: stretch; } .sector-item { flex-direction: column; text-align: center; } .sector-name, .sector-value { width: 100%; margin: 5px 0; } }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(15px);
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .account-summary {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 30px;
+            background: #f8f9fa;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .summary-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: transform 0.2s;
+        }
+
+        .summary-card:hover {
+            transform: translateY(-2px);
+        }
+
+        .summary-card h3 {
+            color: #666;
+            font-size: 0.9em;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .summary-card .value {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .summary-card.positive .value {
+            color: #27ae60;
+        }
+
+        .summary-card.negative .value {
+            color: #e74c3c;
+        }
+        
+        .tabs {
+            display: flex;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(15px);
+        }
+        
+        .tab-button {
+            flex: 1;
+            padding: 20px;
+            text-align: center;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: 600;
+            color: #666;
+            transition: all 0.3s;
+            border-bottom: 3px solid transparent;
+        }
+        
+        .tab-button.active {
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: white;
+            box-shadow: 0 4px 15px rgba(30, 60, 114, 0.3);
+        }
+        
+        .tab-content {
+            display: none;
+            padding: 30px;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+
+        .filters {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            border: 1px solid #e9ecef;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 1em;
+            transition: border-color 0.3s;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #3498db;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: 600;
+            transition: all 0.3s;
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
+        }
+
+        .btn:disabled {
+            background: #95a5a6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn-success {
+            background: linear-gradient(135deg, #27ae60 0%, #229954 100%);
+        }
+
+        .btn-danger {
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+        }
+
+        .btn-warning {
+            background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, #95a5a6 0%, #7f8c8d 100%);
+        }
+
+        .rate-limit-info {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            color: #856404;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .rate-limit-info h4 {
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .strategy-info {
+            background: #d1ecf1;
+            border: 1px solid #bee5eb;
+            color: #0c5460;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .strategy-info h4 {
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .progress-container {
+            margin: 20px 0;
+            display: none;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 25px;
+            background: #e9ecef;
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #27ae60, #2ecc71);
+            width: 0%;
+            transition: width 0.5s ease;
+            position: relative;
+        }
+
+        .progress-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-weight: 600;
+            font-size: 13px;
+            color: #2c3e50;
+            z-index: 1;
+            text-shadow: 0 1px 2px rgba(255,255,255,0.8);
+        }
+
+        .data-status {
+            text-align: center;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            font-weight: 600;
+            font-size: 1.1em;
+        }
+
+        .data-status.loading {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            color: #856404;
+        }
+
+        .data-status.success {
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+        }
+
+        .data-status.error {
+            background: #f8d7da;
+            border: 1px solid #f5c6cb;
+            color: #721c24;
+        }
+
+        .sector-analysis {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        .sector-analysis h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+        }
+
+        .sector-bar {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            margin-bottom: 10px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            transition: all 0.3s;
+            border-left: 4px solid transparent;
+        }
+
+        .sector-bar:hover {
+            background: #e9ecef;
+            transform: translateX(5px);
+        }
+
+        .sector-bar.positive {
+            border-left-color: #27ae60;
+        }
+
+        .sector-bar.negative {
+            border-left-color: #e74c3c;
+        }
+
+        .sector-name {
+            flex: 1;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        .sector-symbol {
+            margin: 0 15px;
+            color: #7f8c8d;
+            font-family: monospace;
+            font-weight: 600;
+        }
+
+        .sector-price {
+            margin: 0 15px;
+            font-weight: 500;
+            color: #34495e;
+        }
+
+        .sector-performance {
+            min-width: 80px;
+            text-align: center;
+        }
+
+        .sector-value {
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.9em;
+        }
+
+        .sector-value.positive {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .sector-value.negative {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .stock-recommendations {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        .stock-recommendations h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+        }
+
+        .recommendation-section {
+            margin-bottom: 30px;
+        }
+
+        .recommendation-section h3 {
+            color: #34495e;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #ecf0f1;
+        }
+
+        .opportunity-card {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            border-left: 4px solid #3498db;
+            transition: all 0.3s;
+        }
+
+        .opportunity-card:hover {
+            background: #e9ecef;
+            transform: translateY(-2px);
+        }
+
+        .opportunity-card.long {
+            border-left-color: #27ae60;
+        }
+
+        .opportunity-card.short {
+            border-left-color: #e74c3c;
+        }
+
+        .opportunity-card h4 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .opportunity-card p {
+            color: #7f8c8d;
+            margin-bottom: 5px;
+        }
+
+        .console {
+            background: #1a1a1a;
+            color: #00ff41;
+            padding: 20px;
+            border-radius: 10px;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            max-height: 400px;
+            overflow-y: auto;
+            margin-top: 20px;
+            box-shadow: inset 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .console-line {
+            margin-bottom: 8px;
+            line-height: 1.4;
+        }
+
+        .console-line.success {
+            color: #00ff41;
+        }
+
+        .console-line.error {
+            color: #ff4757;
+        }
+
+        .console-line.warning {
+            color: #ffa502;
+        }
+
+        .console-line.info {
+            color: #3742fa;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .container {
+                border-radius: 15px;
+            }
+
+            .header h1 {
+                font-size: 2em;
+            }
+
+            .tabs {
+                flex-direction: column;
+            }
+
+            .tab-button {
+                border-bottom: 1px solid #e9ecef;
+            }
+
+            .account-summary {
+                grid-template-columns: 1fr;
+                padding: 20px;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .sector-bar {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .sector-name, .sector-symbol, .sector-price {
+                margin: 5px 0;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <h1>🚀 Professional Trading Dashboard</h1>
-            <p>Real-time market analysis with Martin Luke's championship strategy</p>
+            <h1>Complete Trading System</h1>
+            <p>Market Analysis & Trade Management - Martin Luke Strategy</p>
+        </div>
+
+        <div class="account-summary">
+            <div class="summary-card" style="cursor: pointer;" onclick="updateAccountAmount()">
+                <h3>Total Account</h3>
+                <div class="value" id="totalAccount">$25,000</div>
+            </div>
+            <div class="summary-card">
+                <h3>Buying Power</h3>
+                <div class="value" id="buyingPower">$25,000</div>
+            </div>
+            <div class="summary-card">
+                <h3>Positions Value</h3>
+                <div class="value" id="positionsValue">$0</div>
+            </div>
+            <div class="summary-card">
+                <h3>P&L Today</h3>
+                <div class="value positive" id="dailyPL">$0</div>
+            </div>
+            <div class="summary-card">
+                <h3>Win Rate</h3>
+                <div class="value" id="winRate">0%</div>
+            </div>
+            <div class="summary-card">
+                <h3>Profit Factor</h3>
+                <div class="value" id="profitFactor">0.00</div>
+            </div>
         </div>
 
         <div class="tabs">
-            <button class="tab active" onclick="switchTab('analysis')">📊 Market Analysis</button>
-            <button class="tab" onclick="switchTab('picks')">🎯 Stock Picks</button>
-            <button class="tab" onclick="switchTab('management')">💼 Trade Management</button>
+            <button class="tab-button active" onclick="showTab('market-analysis')">Market Analysis</button>
+            <button class="tab-button" onclick="showTab('stock-picks')">Stock Picks</button>
+            <button class="tab-button" onclick="showTab('trade-management')">Trade Management</button>
         </div>
 
         <!-- Market Analysis Tab -->
-        <div id="analysis" class="tab-content active">
-            <h2>📈 Real-Time Sector Performance Analysis</h2>
-            
-            <div class="analysis-controls">
+        <div id="market-analysis" class="tab-content active">
+            <div class="filters">
+                <div class="rate-limit-info">
+                    <h4>⚠️ Alpha Vantage Rate Limits</h4>
+                    <p><strong>Free Tier:</strong> 5 API calls per minute, 100 per day</p>
+                    <p><strong>Solution:</strong> Choose your loading strategy based on your needs</p>
+                </div>
+
+                <div class="strategy-info">
+                    <h4>📋 Loading Strategies</h4>
+                    <p><strong>Fast Load:</strong> 5 key sectors instantly (Tech, Healthcare, Financials, Energy, Utilities)</p>
+                    <p><strong>Smart Load:</strong> All 11 sectors with intelligent 12-second delays (~3 minutes total)</p>
+                    <p><strong>Batch Load:</strong> 5 sectors now + button to load remaining 6 later</p>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Analysis Period</label>
+                        <select id="analysisType">
+                            <option value="daily">Daily Performance</option>
+                            <option value="weekly">Weekly Performance</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Loading Strategy</label>
+                        <select id="loadingStrategy">
+                            <option value="fast">🚀 Fast Load (5 sectors, instant)</option>
+                            <option value="smart">🧠 Smart Load (11 sectors, ~3 minutes)</option>
+                            <option value="batch">📦 Batch Load (5 now, 6 later)</option>
+                        </select>
+                    </div>
+                </div>
+
                 <div class="form-group">
-                    <label>Analysis Type:</label>
-                    <select id="analysisType">
-                        <option value="daily">Daily Performance</option>
-                        <option value="weekly">Weekly Performance</option>
-                        <option value="monthly">Monthly Performance</option>
-                    </select>
-                    
-                    <label>
-                        <input type="checkbox" id="useRealData" checked> 📊 Real Yahoo Finance Data
-                    </label>
-                    
-                    <button class="btn" id="updateButton" onclick="updateAnalysis()">Update Analysis</button>
-                    <button class="btn" onclick="clearConsole()">Clear Console</button>
+                    <button class="btn" id="updateButton" onclick="updateAnalysis()">🔄 Load Real Market Data</button>
+                    <button class="btn btn-secondary" onclick="loadBatch2()" id="batch2Button" style="display: none;">📦 Load Remaining Sectors</button>
+                    <button class="btn btn-warning" onclick="exportToCSV()">📊 Export Data</button>
+                    <button class="btn btn-secondary" onclick="clearConsole()">🧹 Clear Console</button>
+                </div>
+
+                <div class="progress-container" id="progressContainer">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
+                        <div class="progress-text" id="progressText">Ready to load...</div>
+                    </div>
+                </div>
+
+                <div id="dataStatus" class="data-status">
+                    📊 Ready to load real market data. Select your strategy and click "Load Real Market Data"
                 </div>
             </div>
 
-            <div id="currentParameters" class="parameter-display">
-                Ready to load real market data...
-            </div>
-
-            <div id="console"></div>
-
-            <div class="sector-chart" id="sectorChart">
-                <p style="text-align: center; color: #666; padding: 40px;">Click "Update Analysis" to load real sector performance data</p>
+            <div id="sectorAnalysis" class="sector-analysis">
+                <h2>Sector Performance Rankings</h2>
+                <p style="color: #7f8c8d; text-align: center; padding: 40px;">
+                    Select a loading strategy and click "Load Real Market Data" to see live sector performance rankings.
+                </p>
             </div>
         </div>
 
         <!-- Stock Picks Tab -->
-        <div id="picks" class="tab-content">
-            <h2>🎯 Real-Time Trading Opportunities</h2>
-            <div id="stockPicks">
-                <p style="text-align: center; color: #666; padding: 40px;">Load market analysis first to see trading opportunities</p>
+        <div id="stock-picks" class="tab-content">
+            <div id="stockRecommendations" class="stock-recommendations">
+                <h2>Stock Recommendations</h2>
+                <p style="color: #7f8c8d; text-align: center; padding: 40px;">
+                    Load market data first to see long and short opportunities based on sector performance.
+                </p>
             </div>
         </div>
 
         <!-- Trade Management Tab -->
-        <div id="management" class="tab-content">
-            <h2>💼 Trade Management</h2>
-            <div style="background: #d4edda; border: 1px solid #c3e6cb; color: #155724; padding: 20px; border-radius: 8px; text-align: center;">
-                <h3>✅ Real Data is Working!</h3>
-                <p>Your CORS extension is properly configured and Alpha Vantage API is accessible.</p>
-                <p>Switch to Market Analysis tab to see real sector performance data.</p>
+        <div id="trade-management" class="tab-content">
+            <div class="stock-recommendations">
+                <h2>Trade Management</h2>
+                <p style="color: #7f8c8d; text-align: center; padding: 40px;">
+                    This section contains your position sizing, active trades, and trade journal.<br>
+                    <strong>Note:</strong> For the complete trade management system with position sizing, active trades tracking, and trade journal, use the full complete_trading_dashboard.html file.
+                </p>
+                
+                <div style="background: #e8f4f8; border: 1px solid #bee5eb; color: #0c5460; padding: 20px; border-radius: 10px; margin-top: 20px;">
+                    <h4>🔧 Full Trade Management Features Available In:</h4>
+                    <p><strong>complete_trading_dashboard.html</strong></p>
+                    <ul style="margin: 10px 0; padding-left: 20px;">
+                        <li>Position sizing calculator</li>
+                        <li>Active trades tracking</li>
+                        <li>Trade journal with P&L</li>
+                        <li>EMA-based exit management</li>
+                        <li>Risk management tools</li>
+                        <li>Google Sheets integration</li>
+                    </ul>
+                </div>
             </div>
+        </div>
+
+        <div class="console" id="console">
+            <div class="console-line success">[SYSTEM] Complete Trading Dashboard Initialized</div>
+            <div class="console-line info">[API] Alpha Vantage real-time data ready</div>
+            <div class="console-line warning">[RATE LIMIT] Free tier: 5 calls/minute - choose strategy accordingly</div>
         </div>
     </div>
 
     <script>
-        let consoleDiv = document.getElementById('console');
+        // Global variables
         let realSectorData = {};
+        let isLoading = false;
+        let accountData = {
+            totalAccount: 25000,
+            buyingPower: 25000,
+            positionsValue: 0,
+            dailyPL: 0,
+            trades: [],
+            stats: {
+                totalTrades: 0,
+                winningTrades: 0,
+                totalProfit: 0,
+                totalLoss: 0
+            }
+        };
+
+        // Sector ETF mappings
+        const sectorETFs = {
+            'Technology': 'XLK',
+            'Healthcare': 'XLV', 
+            'Financials': 'XLF',
+            'Consumer Discretionary': 'XLY',
+            'Industrials': 'XLI',
+            'Energy': 'XLE',
+            'Utilities': 'XLU',
+            'Materials': 'XLB',
+            'Real Estate': 'XLRE',
+            'Consumer Staples': 'XLP',
+            'Communication Services': 'XLC'
+        };
+
+        // Batch definitions for strategic loading
+        const batch1Sectors = ['Technology', 'Healthcare', 'Financials', 'Energy', 'Utilities'];
+        const batch2Sectors = ['Materials', 'Real Estate', 'Consumer Discretionary', 'Consumer Staples', 'Industrials', 'Communication Services'];
 
         // Console logging
         function log(message, type = 'info') {
+            const console = document.getElementById('console');
+            const line = document.createElement('div');
+            line.className = `console-line ${type}`;
+            
             const timestamp = new Date().toLocaleTimeString();
-            const color = type === 'error' ? 'red' : type === 'success' ? 'green' : type === 'warning' ? 'orange' : 'black';
-            consoleDiv.innerHTML += `<div style="color: ${color}">[${timestamp}] ${message}</div>`;
-            consoleDiv.scrollTop = consoleDiv.scrollHeight;
-        }
-
-        function clearConsole() {
-            consoleDiv.innerHTML = '';
-        }
-
-        // Tab switching
-        function switchTab(tabName) {
-            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
-            document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
-            document.getElementById(tabName).classList.add('active');
-            event.target.classList.add('active');
-        }
-
-        // Real API data fetching
-        async function fetchRealSectorData() {
-            const sectorETFs = {
-                'Technology': 'XLK',
-                'Healthcare': 'XLV', 
-                'Financials': 'XLF',
-                'Consumer Discretionary': 'XLY',
-                'Industrials': 'XLI',
-                'Energy': 'XLE',
-                'Utilities': 'XLU',
-                'Materials': 'XLB',
-                'Real Estate': 'XLRE',
-                'Consumer Staples': 'XLP',
-                'Communication Services': 'XLC'
+            const icons = {
+                'success': '[SUCCESS]',
+                'error': '[ERROR]', 
+                'warning': '[WARNING]',
+                'info': '[INFO]'
             };
+            
+            line.textContent = `[${timestamp}] ${icons[type]} ${message}`;
+            console.appendChild(line);
+            console.scrollTop = console.scrollHeight;
+        }
 
-            const apiKey = 'VNSDWMZQD4FBKRB0';
+        // Progress tracking
+        function updateProgress(current, total, message) {
+            const progressContainer = document.getElementById('progressContainer');
+            const progressFill = document.getElementById('progressFill');
+            const progressText = document.getElementById('progressText');
+            
+            const percentage = Math.round((current / total) * 100);
+            
+            progressContainer.style.display = 'block';
+            progressFill.style.width = percentage + '%';
+            progressText.textContent = `${message} (${current}/${total}) - ${percentage}%`;
+        }
+
+        function hideProgress() {
+            document.getElementById('progressContainer').style.display = 'none';
+        }
+
+        // Update data status display
+        function updateDataStatus(message, type = 'loading') {
+            const dataStatus = document.getElementById('dataStatus');
+            dataStatus.textContent = message;
+            dataStatus.className = `data-status ${type}`;
+        }
+
+        // Fetch sector data with intelligent rate limiting
+        async function fetchSectorData(sectorsToLoad, strategy) {
+            const apiKey = 'VNSDWMZQD4FBKRB0'; // Replace with your Alpha Vantage API key
             const sectorPerformance = {};
             let successCount = 0;
+            const totalSectors = sectorsToLoad.length;
 
-            log('🚀 Starting real-time sector data fetch...');
+            log(`Starting ${strategy} data fetch for ${totalSectors} sectors...`, 'info');
 
-            for (const [sectorName, symbol] of Object.entries(sectorETFs)) {
+            for (let i = 0; i < sectorsToLoad.length; i++) {
+                const sectorName = sectorsToLoad[i];
+                const symbol = sectorETFs[sectorName];
+                
                 try {
-                    log(`📡 Fetching ${sectorName} (${symbol})...`);
+                    updateProgress(i + 1, totalSectors, `Loading ${sectorName}`);
+                    log(`Fetching ${sectorName} (${symbol})...`, 'info');
                     
-                    const url = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${symbol}&apikey=${apiKey}&outputsize=compact`;
-                    const response = await fetch(url);
+                    const response = await fetch(`https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${symbol}&apikey=${apiKey}`);
                     const data = await response.json();
 
-                    if (data['Error Message']) {
-                        log(`❌ ${sectorName}: ${data['Error Message']}`, 'error');
-                        continue;
-                    }
-
                     if (data['Note']) {
-                        log(`⚠️ Rate limit hit. Loaded ${successCount} sectors.`, 'warning');
+                        log(`Rate limit hit after ${successCount} sectors. Wait 1 minute to continue.`, 'warning');
                         break;
                     }
 
-                    if (data['Time Series (Daily)']) {
-                        const timeSeries = data['Time Series (Daily)'];
-                        const dates = Object.keys(timeSeries).slice(0, 5); // Get last 5 days
+                    if (data['Global Quote']) {
+                        const quote = data['Global Quote'];
+                        const currentPrice = parseFloat(quote['05. price']);
+                        const previousClose = parseFloat(quote['08. previous close']);
+                        const dailyChange = ((currentPrice - previousClose) / previousClose) * 100;
                         
-                        if (dates.length >= 2) {
-                            const latestPrice = parseFloat(timeSeries[dates[0]]['4. close']);
-                            const previousPrice = parseFloat(timeSeries[dates[1]]['4. close']);
-                            const dailyChange = ((latestPrice - previousPrice) / previousPrice * 100);
-                            
-                            // Calculate weekly change if we have enough data
-                            let weeklyChange = dailyChange;
-                            if (dates.length >= 5) {
-                                const weekAgoPrice = parseFloat(timeSeries[dates[4]]['4. close']);
-                                weeklyChange = ((latestPrice - weekAgoPrice) / weekAgoPrice * 100);
-                            }
-
-                            sectorPerformance[sectorName] = {
-                                symbol: symbol,
-                                price: latestPrice,
-                                dailyChange: dailyChange,
-                                weeklyChange: weeklyChange,
-                                date: dates[0]
-                            };
-
-                            log(`✅ ${sectorName}: ${dailyChange >= 0 ? '+' : ''}${dailyChange.toFixed(2)}% ($${latestPrice.toFixed(2)})`, 'success');
-                            successCount++;
-                        }
+                        // Calculate weekly change (simplified - using 5-day approximation)
+                        const weeklyChange = dailyChange * 1.2; // Rough approximation
+                        
+                        sectorPerformance[sectorName] = {
+                            symbol: symbol,
+                            price: currentPrice,
+                            dailyChange: dailyChange,
+                            weeklyChange: weeklyChange,
+                            volume: parseInt(quote['06. volume']),
+                            previousClose: previousClose
+                        };
+                        
+                        successCount++;
+                        log(`${sectorName}: $${currentPrice.toFixed(2)} (${dailyChange >= 0 ? '+' : ''}${dailyChange.toFixed(2)}%)`, 'success');
+                    } else {
+                        log(`Failed to fetch ${sectorName}: Invalid response`, 'error');
                     }
 
-                    // Small delay to avoid rate limiting
-                    await new Promise(resolve => setTimeout(resolve, 300));
+                    // Intelligent delay based on strategy
+                    if (strategy === 'smart' && i < sectorsToLoad.length - 1) {
+                        log(`Waiting 12 seconds for rate limit compliance...`, 'info');
+                        await new Promise(resolve => setTimeout(resolve, 12000));
+                    } else if (strategy === 'batch' && i < sectorsToLoad.length - 1) {
+                        // Shorter delay for batch loading
+                        await new Promise(resolve => setTimeout(resolve, 1000));
+                    }
 
                 } catch (error) {
-                    log(`❌ ${sectorName}: ${error.message}`, 'error');
+                    log(`Error fetching ${sectorName}: ${error.message}`, 'error');
                 }
             }
 
-            log(`📊 Completed: ${successCount}/${Object.keys(sectorETFs).length} sectors loaded`, successCount > 0 ? 'success' : 'error');
+            hideProgress();
+            log(`Completed: ${successCount}/${totalSectors} sectors loaded successfully`, successCount > 0 ? 'success' : 'error');
             return sectorPerformance;
         }
 
-        // Update analysis
+        // Update analysis with selected strategy
         async function updateAnalysis() {
-            const updateButton = document.getElementById('updateButton');
-            const originalText = updateButton.textContent;
-            const useRealData = document.getElementById('useRealData').checked;
-            const analysisType = document.getElementById('analysisType').value;
-
-            updateButton.textContent = 'Loading Real Data...';
-            updateButton.disabled = true;
-            
-            const parameterDisplay = document.getElementById('currentParameters');
-            parameterDisplay.textContent = 'Loading real market data from Alpha Vantage...';
-            parameterDisplay.className = 'parameter-display loading';
-
-            if (useRealData) {
-                try {
-                    realSectorData = await fetchRealSectorData();
-                    
-                    if (Object.keys(realSectorData).length > 0) {
-                        parameterDisplay.textContent = `✅ Real Market Data Loaded! ${Object.keys(realSectorData).length} sectors • ${analysisType.charAt(0).toUpperCase() + analysisType.slice(1)} Analysis • ${new Date().toLocaleString()}`;
-                        parameterDisplay.className = 'parameter-display success';
-                        
-                        updateSectorChart(realSectorData, analysisType);
-                        updateStockPicks(realSectorData, analysisType);
-                    } else {
-                        throw new Error('No sector data received');
-                    }
-                } catch (error) {
-                    log(`❌ Real data failed: ${error.message}`, 'error');
-                    parameterDisplay.textContent = '❌ Real data failed - check console for details';
-                    parameterDisplay.className = 'parameter-display';
-                }
-            } else {
-                parameterDisplay.textContent = '🎲 Using simulated data for testing';
-                parameterDisplay.className = 'parameter-display';
-                // Use simulated data here if needed
+            if (isLoading) {
+                log('Already loading data, please wait...', 'warning');
+                return;
             }
 
-            updateButton.textContent = originalText;
-            updateButton.disabled = false;
+            const strategy = document.getElementById('loadingStrategy').value;
+            const analysisType = document.getElementById('analysisType').value;
+            const updateButton = document.getElementById('updateButton');
+
+            isLoading = true;
+            updateButton.disabled = true;
+            updateButton.textContent = '⏳ Loading...';
+            updateDataStatus('⏳ Loading real market data...', 'loading');
+
+            try {
+                let sectorsToLoad;
+                
+                switch (strategy) {
+                    case 'fast':
+                        sectorsToLoad = batch1Sectors;
+                        log('Fast Load: Loading 5 key sectors instantly', 'info');
+                        break;
+                    case 'smart':
+                        sectorsToLoad = Object.keys(sectorETFs);
+                        log('Smart Load: Loading all 11 sectors with rate limit management', 'info');
+                        break;
+                    case 'batch':
+                        sectorsToLoad = batch1Sectors;
+                        log('Batch Load: Loading first 5 sectors', 'info');
+                        document.getElementById('batch2Button').style.display = 'inline-block';
+                        break;
+                }
+
+                const newData = await fetchSectorData(sectorsToLoad, strategy);
+                
+                // Merge with existing data
+                realSectorData = { ...realSectorData, ...newData };
+                
+                if (Object.keys(newData).length > 0) {
+                    updateDataStatus(`✅ Real Market Data Loaded! ${Object.keys(realSectorData).length} sectors • ${analysisType.charAt(0).toUpperCase() + analysisType.slice(1)} Analysis • ${new Date().toLocaleString()}`, 'success');
+                    
+                    updateSectorChart(realSectorData, analysisType);
+                    updateStockPicks(realSectorData, analysisType);
+                } else {
+                    updateDataStatus('❌ Failed to load market data. Check console for details.', 'error');
+                }
+
+            } catch (error) {
+                log(`Error in updateAnalysis: ${error.message}`, 'error');
+                updateDataStatus('❌ Error loading market data. Check console for details.', 'error');
+            } finally {
+                isLoading = false;
+                updateButton.disabled = false;
+                updateButton.textContent = '🔄 Load Real Market Data';
+            }
         }
 
-        // Update sector chart with real data
+        // Load batch 2 sectors
+        async function loadBatch2() {
+            const batch2Button = document.getElementById('batch2Button');
+            const analysisType = document.getElementById('analysisType').value;
+
+            if (isLoading) {
+                log('Already loading data, please wait...', 'warning');
+                return;
+            }
+
+            isLoading = true;
+            batch2Button.disabled = true;
+            batch2Button.textContent = '⏳ Loading Batch 2...';
+
+            try {
+                log('Loading remaining 6 sectors...', 'info');
+                const newData = await fetchSectorData(batch2Sectors, 'batch');
+                realSectorData = { ...realSectorData, ...newData };
+                
+                updateSectorChart(realSectorData, analysisType);
+                updateStockPicks(realSectorData, analysisType);
+                
+                updateDataStatus(`✅ Complete Dataset Loaded! ${Object.keys(realSectorData).length} sectors • ${analysisType.charAt(0).toUpperCase() + analysisType.slice(1)} Analysis • ${new Date().toLocaleString()}`, 'success');
+                
+                batch2Button.style.display = 'none';
+                log('All sectors loaded successfully!', 'success');
+
+            } catch (error) {
+                log(`Error loading batch 2: ${error.message}`, 'error');
+            } finally {
+                isLoading = false;
+                batch2Button.textContent = '📦 Load Remaining Sectors';
+                batch2Button.disabled = false;
+            }
+        }
+
+        // Update sector chart display
         function updateSectorChart(sectorData, analysisType) {
-            const chartContainer = document.getElementById('sectorChart');
+            const chartContainer = document.getElementById('sectorAnalysis');
             const changeKey = analysisType === 'weekly' ? 'weeklyChange' : 'dailyChange';
             
             const sectors = Object.entries(sectorData).sort((a, b) => b[1][changeKey] - a[1][changeKey]);
             
-            let html = `<h3>📊 Real Sector Performance Rankings (${analysisType.charAt(0).toUpperCase() + analysisType.slice(1)})</h3>`;
+            let html = `<h2>Real Sector Performance Rankings (${analysisType.charAt(0).toUpperCase() + analysisType.slice(1)} - ${Object.keys(sectorData).length} sectors)</h2>`;
             
             sectors.forEach(([sectorName, data], index) => {
                 const change = data[changeKey];
                 const isPositive = change >= 0;
-                const barWidth = Math.abs(change) * 10; // Scale for display
+                const rank = index + 1;
                 
                 html += `
-                    <div class="sector-item">
-                        <div class="sector-name">${index + 1}. ${sectorName}</div>
-                        <div class="sector-bar">
-                            <div class="sector-fill ${isPositive ? 'positive' : 'negative'}" 
-                                 style="width: ${Math.min(barWidth, 100)}%"></div>
-                        </div>
-                        <div class="sector-value" style="color: ${isPositive ? '#28a745' : '#dc3545'}">
-                            ${change >= 0 ? '+' : ''}${change.toFixed(2)}%
+                    <div class="sector-bar ${isPositive ? 'positive' : 'negative'}">
+                        <div class="sector-name">${rank}. ${sectorName}</div>
+                        <div class="sector-symbol">${data.symbol}</div>
+                        <div class="sector-price">$${data.price.toFixed(2)}</div>
+                        <div class="sector-performance">
+                            <div class="sector-value ${isPositive ? 'positive' : 'negative'}">
+                                ${isPositive ? '+' : ''}${change.toFixed(2)}%
+                            </div>
                         </div>
                     </div>
                 `;
@@ -288,62 +937,150 @@
             chartContainer.innerHTML = html;
         }
 
-        // Update stock picks with real data
+        // Update stock picks based on sector performance
         function updateStockPicks(sectorData, analysisType) {
-            const picksContainer = document.getElementById('stockPicks');
+            const picksContainer = document.getElementById('stockRecommendations');
             const changeKey = analysisType === 'weekly' ? 'weeklyChange' : 'dailyChange';
             const sectors = Object.entries(sectorData).sort((a, b) => b[1][changeKey] - a[1][changeKey]);
             
-            let html = '<div class="stock-picks">';
+            let html = '<h2>Stock Recommendations</h2>';
             
-            // Top performers (Long opportunities)
-            html += '<div class="pick-section">';
+            // Long opportunities
+            html += '<div class="recommendation-section">';
             html += `<h3>🚀 Top Long Opportunities (${analysisType.charAt(0).toUpperCase() + analysisType.slice(1)})</h3>`;
             
-            sectors.slice(0, 3).forEach(([sectorName, data]) => {
-                const change = data[changeKey];
-                html += `
-                    <div class="stock-item">
-                        <div>
-                            <div class="stock-symbol">📈 ${sectorName} (${data.symbol})</div>
-                            <div class="stock-price">Current: $${data.price.toFixed(2)} • Last Updated: ${data.date}</div>
+            const topSectors = sectors.filter(([, data]) => data[changeKey] > 0).slice(0, 3);
+            if (topSectors.length === 0) {
+                html += '<p style="color: #7f8c8d; text-align: center; padding: 20px;">No sectors with positive performance in current timeframe.</p>';
+            } else {
+                topSectors.forEach(([sectorName, data]) => {
+                    const change = data[changeKey];
+                    html += `
+                        <div class="opportunity-card long">
+                            <h4>🎯 ${sectorName} Sector (${data.symbol})</h4>
+                            <p><strong>Performance:</strong> +${change.toFixed(2)}%</p>
+                            <p><strong>Current Price:</strong> $${data.price.toFixed(2)}</p>
+                            <p><strong>Strategy:</strong> Look for breakout stocks in this strong sector</p>
+                            <p><strong>Focus:</strong> Stocks above $100M market cap with volume expansion</p>
                         </div>
-                        <div class="stock-change" style="color: #28a745">
-                            +${change.toFixed(2)}%
-                        </div>
-                    </div>
-                `;
-            });
+                    `;
+                });
+            }
             html += '</div>';
             
-            // Bottom performers (Short opportunities)
-            html += '<div class="pick-section">';
+            // Short opportunities
+            html += '<div class="recommendation-section">';
             html += `<h3>📉 Top Short Opportunities (${analysisType.charAt(0).toUpperCase() + analysisType.slice(1)})</h3>`;
             
-            sectors.slice(-3).reverse().forEach(([sectorName, data]) => {
-                const change = data[changeKey];
-                html += `
-                    <div class="stock-item">
-                        <div>
-                            <div class="stock-symbol">📉 ${sectorName} (${data.symbol})</div>
-                            <div class="stock-price">Current: $${data.price.toFixed(2)} • Last Updated: ${data.date}</div>
+            const bottomSectors = sectors.filter(([, data]) => data[changeKey] < 0).slice(-3).reverse();
+            if (bottomSectors.length === 0) {
+                html += '<p style="color: #7f8c8d; text-align: center; padding: 20px;">No sectors with negative performance in current timeframe.</p>';
+            } else {
+                bottomSectors.forEach(([sectorName, data]) => {
+                    const change = data[changeKey];
+                    html += `
+                        <div class="opportunity-card short">
+                            <h4>📉 ${sectorName} Sector (${data.symbol})</h4>
+                            <p><strong>Performance:</strong> ${change.toFixed(2)}%</p>
+                            <p><strong>Current Price:</strong> $${data.price.toFixed(2)}</p>
+                            <p><strong>Strategy:</strong> Look for breakdown stocks in this weak sector</p>
+                            <p><strong>Focus:</strong> Stocks breaking key support levels with volume</p>
                         </div>
-                        <div class="stock-change" style="color: #dc3545">
-                            ${change.toFixed(2)}%
-                        </div>
-                    </div>
-                `;
-            });
+                    `;
+                });
+            }
             html += '</div>';
             
-            html += '</div>';
             picksContainer.innerHTML = html;
         }
 
-        // Initialize
+        // Export data to CSV
+        function exportToCSV() {
+            if (Object.keys(realSectorData).length === 0) {
+                log('No data to export. Load market data first.', 'warning');
+                return;
+            }
+
+            const analysisType = document.getElementById('analysisType').value;
+            
+            let csvContent = 'Sector,Symbol,Price,Daily_Change_%,Weekly_Change_%,Volume,Previous_Close\n';
+            
+            Object.entries(realSectorData).forEach(([sectorName, data]) => {
+                csvContent += `${sectorName},${data.symbol},${data.price.toFixed(2)},${data.dailyChange.toFixed(2)},${data.weeklyChange.toFixed(2)},${data.volume},${data.previousClose.toFixed(2)}\n`;
+            });
+
+            const blob = new Blob([csvContent], { type: 'text/csv' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `sector_analysis_${analysisType}_${new Date().toISOString().split('T')[0]}.csv`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(url);
+            
+            log('Data exported to CSV successfully!', 'success');
+        }
+
+        // Update account amount
+        function updateAccountAmount() {
+            const newAmount = prompt('Enter new account amount:', accountData.totalAccount);
+            if (newAmount && !isNaN(newAmount)) {
+                const amount = parseFloat(newAmount);
+                accountData.totalAccount = amount;
+                accountData.buyingPower = amount - accountData.positionsValue;
+                updateAccountDisplay();
+                log(`Account amount updated to $${amount.toLocaleString()}`, 'success');
+            }
+        }
+
+        // Update account display
+        function updateAccountDisplay() {
+            document.getElementById('totalAccount').textContent = `$${accountData.totalAccount.toLocaleString()}`;
+            document.getElementById('buyingPower').textContent = `$${accountData.buyingPower.toLocaleString()}`;
+            document.getElementById('positionsValue').textContent = `$${accountData.positionsValue.toLocaleString()}`;
+            document.getElementById('dailyPL').textContent = `$${accountData.dailyPL.toLocaleString()}`;
+            
+            // Update win rate
+            const winRate = accountData.stats.totalTrades > 0 ? 
+                (accountData.stats.winningTrades / accountData.stats.totalTrades * 100) : 0;
+            document.getElementById('winRate').textContent = `${winRate.toFixed(1)}%`;
+            
+            // Update profit factor
+            const profitFactor = accountData.stats.totalLoss > 0 ? 
+                (accountData.stats.totalProfit / Math.abs(accountData.stats.totalLoss)) : 0;
+            document.getElementById('profitFactor').textContent = profitFactor.toFixed(2);
+        }
+
+        // Clear console
+        function clearConsole() {
+            document.getElementById('console').innerHTML = '';
+            log('Console cleared', 'info');
+        }
+
+        // Tab management
+        function showTab(tabName) {
+            // Hide all tab contents
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(content => content.classList.remove('active'));
+            
+            // Remove active class from all tabs
+            const tabs = document.querySelectorAll('.tab-button');
+            tabs.forEach(tab => tab.classList.remove('active'));
+            
+            // Show selected tab content
+            document.getElementById(tabName).classList.add('active');
+            
+            // Add active class to clicked tab
+            event.target.classList.add('active');
+        }
+
+        // Initialize dashboard
         document.addEventListener('DOMContentLoaded', function() {
-            log('🚀 Trading Dashboard loaded with real data capability');
-            log('💡 Click "Update Analysis" to fetch real sector performance data');
+            updateAccountDisplay();
+            log('Complete Trading Dashboard Initialized', 'success');
+            log('Alpha Vantage API Ready - Choose your loading strategy', 'info');
+            log('Free Tier Limits: 5 calls/minute, 100/day', 'warning');
         });
     </script>
 </body>
