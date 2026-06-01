@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trading Dashboard - Real Data Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 1200px; margin: 0 auto; padding: 20px; }
+        .status { padding: 15px; margin: 10px 0; border-radius: 5px; }
+        .success { background: #d4edda; border: 1px solid #c3e6cb; color: #155724; }
+        .error { background: #f8d7da; border: 1px solid #f5c6cb; color: #721c24; }
+        .warning { background: #fff3cd; border: 1px solid #ffeaa7; color: #856404; }
+        .sector-item { display: flex; justify-content: space-between; padding: 10px; margin: 5px 0; background: #f8f9fa; border-radius: 5px; }
+        .btn { background: #007bff; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; margin: 5px; }
+        .btn:hover { background: #0056b3; }
+        #console { background: #f8f9fa; padding: 15px; border-radius: 5px; height: 200px; overflow-y: scroll; font-family: monospace; font-size: 12px; }
+    </style>
+</head>
+<body>
+    <h1>🚀 Trading Dashboard - Real Data Test</h1>
+    
+    <div class="status warning">
+        <strong>CORS Extension Check:</strong> Make sure CORS Unblock is enabled and showing green/ON status
+    </div>
+
+    <div>
+        <button class="btn" onclick="testDirectAPI()">🔍 Test Direct Alpha Vantage API</button>
+        <button class="btn" onclick="testAllSectors()">📊 Load All Sector Data</button>
+        <button class="btn" onclick="clearConsole()">🧹 Clear Console</button>
+    </div>
+
+    <div id="status" class="status warning">
+        Click "Test Direct Alpha Vantage API" to check if real data is working...
+    </div>
+
+    <div id="console"></div>
+
+    <div id="sectorData" style="margin-top: 20px;">
+        <!-- Sector data will appear here -->
+    </div>
+
+    <script>
+        let consoleDiv = document.getElementById('console');
+        let statusDiv = document.getElementById('status');
+
+        function log(message, type = 'info') {
+            const timestamp = new Date().toLocaleTimeString();
+            const color = type === 'error' ? 'red' : type === 'success' ? 'green' : 'black';
+            consoleDiv.innerHTML += `<div style="color: ${color}">[${timestamp}] ${message}</div>`;
+            consoleDiv.scrollTop = consoleDiv.scrollHeight;
+        }
+
+        function clearConsole() {
+            consoleDiv.innerHTML = '';
+        }
+
+        async function testDirectAPI() {
+            log('🔍 Testing direct Alpha Vantage API call...');
+            statusDiv.innerHTML = '<strong>Testing...</strong> Checking Alpha Vantage API access';
+            statusDiv.className = 'status warning';
+
+            const symbol = 'XLK'; // Technology sector ETF
+            const apiKey = 'VNSDWMZQD4FBKRB0';
+            const url = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${symbol}&apikey=${apiKey}&outputsize=compact`;
+
+            try {
+                log(`📡 Calling: ${url}`);
+                
+                const response = await fetch(url);
+                log(`📥 Response status: ${response.status} ${response.statusText}`);
+
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+
+                const data = await response.json();
+                log('📊 Response received, parsing data...');
+
+                if (data['Error Message']) {
+                    throw new Error(`API Error: ${data['Error Message']}`);
+                }
+
+                if (data['Note']) {
+                    throw new Error(`API Limit: ${data['Note']}`);
+                }
+
+                if (data['Time Series (Daily)']) {
+                    const timeSeries = data['Time Series (Daily)'];
+                    const dates = Object.keys(timeSeries);
+                    const latestDate = dates[0];
+                    const latestPrice = timeSeries[latestDate]['4. close'];
+                    
+                    log(`✅ SUCCESS! Got real data for ${symbol}`, 'success');
+                    log(`📅 Latest date: ${latestDate}`, 'success');
+                    log(`💰 Latest price: $${latestPrice}`, 'success');
+                    log(`📈 Total data points: ${dates.length}`, 'success');
+
+                    statusDiv.innerHTML = `<strong>✅ SUCCESS!</strong> Real Alpha Vantage data is working! Latest ${symbol} price: $${latestPrice}`;
+                    statusDiv.className = 'status success';
+
+                    return data;
+                } else {
+                    throw new Error('No time series data found in response');
+                }
+
+            } catch (error) {
+                log(`❌ ERROR: ${error.message}`, 'error');
+                
+                if (error.message.includes('CORS') || error.message.includes('fetch')) {
+                    statusDiv.innerHTML = '<strong>❌ CORS BLOCKED:</strong> CORS extension is not working properly. Try refreshing page or checking extension settings.';
+                } else if (error.message.includes('API Limit') || error.message.includes('Note')) {
+                    statusDiv.innerHTML = '<strong>⚠️ API LIMIT:</strong> You\'ve hit the Alpha Vantage rate limit (5 calls/minute). Wait 1 minute and try again.';
+                } else {
+                    statusDiv.innerHTML = `<strong>❌ ERROR:</strong> ${error.message}`;
+                }
+                statusDiv.className = 'status error';
+                return null;
+            }
+        }
+
+        async function testAllSectors() {
+            log('📊 Testing all sector ETFs...');
+            
+            const sectorETFs = {
+                'Technology': 'XLK',
+                'Healthcare': 'XLV',
+                'Financials': 'XLF',
+                'Consumer Discretionary': 'XLY',
+                'Industrials': 'XLI',
+                'Energy': 'XLE',
+                'Utilities': 'XLU',
+                'Materials': 'XLB',
+                'Real Estate': 'XLRE',
+                'Consumer Staples': 'XLP',
+                'Communication Services': 'XLC'
+            };
+
+            const sectorDataDiv = document.getElementById('sectorData');
+            sectorDataDiv.innerHTML = '<h3>📈 Real Sector Performance</h3>';
+
+            let successCount = 0;
+            let totalCount = Object.keys(sectorETFs).length;
+
+            for (const [sectorName, symbol] of Object.entries(sectorETFs)) {
+                try {
+                    log(`📡 Fetching ${sectorName} (${symbol})...`);
+                    
+                    const apiKey = 'VNSDWMZQD4FBKRB0';
+                    const url = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${symbol}&apikey=${apiKey}&outputsize=compact`;
+                    
+                    const response = await fetch(url);
+                    const data = await response.json();
+
+                    if (data['Time Series (Daily)']) {
+                        const timeSeries = data['Time Series (Daily)'];
+                        const dates = Object.keys(timeSeries).slice(0, 2); // Get last 2 days
+                        
+                        if (dates.length >= 2) {
+                            const today = parseFloat(timeSeries[dates[0]]['4. close']);
+                            const yesterday = parseFloat(timeSeries[dates[1]]['4. close']);
+                            const change = ((today - yesterday) / yesterday * 100);
+                            
+                            sectorDataDiv.innerHTML += `
+                                <div class="sector-item">
+                                    <span><strong>${sectorName}</strong> (${symbol})</span>
+                                    <span style="color: ${change >= 0 ? 'green' : 'red'}">
+                                        ${change >= 0 ? '+' : ''}${change.toFixed(2)}% ($${today.toFixed(2)})
+                                    </span>
+                                </div>
+                            `;
+                            
+                            log(`✅ ${sectorName}: ${change >= 0 ? '+' : ''}${change.toFixed(2)}%`, 'success');
+                            successCount++;
+                        }
+                    } else if (data['Note']) {
+                        log(`⚠️ ${sectorName}: Rate limit hit`, 'error');
+                        break; // Stop if we hit rate limit
+                    } else {
+                        log(`❌ ${sectorName}: No data received`, 'error');
+                    }
+
+                    // Small delay to avoid rate limiting
+                    await new Promise(resolve => setTimeout(resolve, 200));
+
+                } catch (error) {
+                    log(`❌ ${sectorName}: ${error.message}`, 'error');
+                }
+            }
+
+            log(`📊 Completed: ${successCount}/${totalCount} sectors loaded successfully`, successCount > 0 ? 'success' : 'error');
+            
+            if (successCount > 0) {
+                statusDiv.innerHTML = `<strong>✅ SUCCESS!</strong> Loaded real data for ${successCount}/${totalCount} sectors. CORS is working!`;
+                statusDiv.className = 'status success';
+            } else {
+                statusDiv.innerHTML = '<strong>❌ FAILED:</strong> Could not load any real sector data. Check CORS extension.';
+                statusDiv.className = 'status error';
+            }
+        }
+
+        // Auto-run test on page load
+        window.onload = function() {
+            log('🚀 Trading Dashboard Real Data Test loaded');
+            log('💡 Click "Test Direct Alpha Vantage API" to check if CORS is working');
+        };
+    </script>
+</body>
+</html>
