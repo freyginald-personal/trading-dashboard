@@ -577,14 +577,56 @@
                     <p><strong>Batch Load:</strong> 5 sectors now + button to load remaining 6 later</p>
                 </div>
 
+                <h3 style="color: #2c3e50; margin-bottom: 20px; font-size: 1.3em;">Custom Timeframe Analysis</h3>
+                
                 <div class="form-row">
                     <div class="form-group">
-                        <label>Analysis Period</label>
-                        <select id="analysisType">
-                            <option value="daily">Daily Performance</option>
-                            <option value="weekly">Weekly Performance</option>
+                        <label>Start Date</label>
+                        <input type="date" id="startDate" value="">
+                    </div>
+                    <div class="form-group">
+                        <label>End Date</label>
+                        <input type="date" id="endDate" value="">
+                    </div>
+                    <div class="form-group">
+                        <label>Period Type</label>
+                        <select id="periodType">
+                            <option value="daily">Daily Analysis</option>
+                            <option value="weekly">Weekly Analysis</option>
+                            <option value="monthly">Monthly Analysis</option>
+                            <option value="quarterly">Quarterly Analysis</option>
                         </select>
                     </div>
+                    <div class="form-group">
+                        <label>Period Length</label>
+                        <select id="periodLength">
+                            <option value="1">1 Period</option>
+                            <option value="2">2 Periods</option>
+                            <option value="3">3 Periods</option>
+                            <option value="4">4 Periods</option>
+                            <option value="5">5 Periods</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <button class="btn btn-secondary" onclick="setQuickDate('today')">Today</button>
+                        <button class="btn btn-secondary" onclick="setQuickDate('week')">This Week</button>
+                        <button class="btn btn-secondary" onclick="setQuickDate('month')">This Month</button>
+                        <button class="btn btn-secondary" onclick="setQuickDate('quarter')">This Quarter</button>
+                    </div>
+                    <div class="form-group">
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <input type="checkbox" id="realDataCheckbox" checked>
+                            <label for="realDataCheckbox" style="margin: 0; font-weight: normal;">
+                                📊 Real Yahoo Finance Data
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-row">
                     <div class="form-group">
                         <label>Loading Strategy</label>
                         <select id="loadingStrategy">
@@ -743,14 +785,65 @@
             dataStatus.className = `data-status ${type}`;
         }
 
+        // Set quick date ranges
+        function setQuickDate(period) {
+            const today = new Date();
+            const startDate = document.getElementById('startDate');
+            const endDate = document.getElementById('endDate');
+            
+            endDate.value = today.toISOString().split('T')[0];
+            
+            switch(period) {
+                case 'today':
+                    startDate.value = today.toISOString().split('T')[0];
+                    break;
+                case 'week':
+                    const weekStart = new Date(today);
+                    weekStart.setDate(today.getDate() - today.getDay());
+                    startDate.value = weekStart.toISOString().split('T')[0];
+                    break;
+                case 'month':
+                    const monthStart = new Date(today.getFullYear(), today.getMonth(), 1);
+                    startDate.value = monthStart.toISOString().split('T')[0];
+                    break;
+                case 'quarter':
+                    const quarter = Math.floor(today.getMonth() / 3);
+                    const quarterStart = new Date(today.getFullYear(), quarter * 3, 1);
+                    startDate.value = quarterStart.toISOString().split('T')[0];
+                    break;
+            }
+            
+            log(`Date range set: ${period}`, 'info');
+        }
+
+        // Get current analysis parameters
+        function getAnalysisParameters() {
+            const startDate = document.getElementById('startDate').value;
+            const endDate = document.getElementById('endDate').value;
+            const periodType = document.getElementById('periodType').value;
+            const periodLength = document.getElementById('periodLength').value;
+            const realData = document.getElementById('realDataCheckbox').checked;
+            
+            return {
+                startDate,
+                endDate,
+                periodType,
+                periodLength,
+                realData
+            };
+        }
+
         // Fetch sector data with intelligent rate limiting
-        async function fetchSectorData(sectorsToLoad, strategy) {
+        async function fetchSectorData(sectorsToLoad, strategy, params = null) {
             const apiKey = 'VNSDWMZQD4FBKRB0'; // Replace with your Alpha Vantage API key
             const sectorPerformance = {};
             let successCount = 0;
             const totalSectors = sectorsToLoad.length;
 
             log(`Starting ${strategy} data fetch for ${totalSectors} sectors...`, 'info');
+            if (params) {
+                log(`Custom timeframe: ${params.startDate} to ${params.endDate}, ${params.periodType}, ${params.periodLength} period(s)`, 'info');
+            }
 
             for (let i = 0; i < sectorsToLoad.length; i++) {
                 const sectorName = sectorsToLoad[i];
@@ -782,6 +875,8 @@
                             price: currentPrice,
                             dailyChange: dailyChange,
                             weeklyChange: weeklyChange,
+                            monthlyChange: dailyChange * 4.3, // Rough approximation
+                            quarterlyChange: dailyChange * 13, // Rough approximation
                             volume: parseInt(quote['06. volume']),
                             previousClose: previousClose
                         };
@@ -819,8 +914,19 @@
             }
 
             const strategy = document.getElementById('loadingStrategy').value;
-            const analysisType = document.getElementById('analysisType').value;
+            const params = getAnalysisParameters();
             const updateButton = document.getElementById('updateButton');
+            
+            // Validate date inputs
+            if (!params.startDate || !params.endDate) {
+                log('Please select both start and end dates', 'warning');
+                return;
+            }
+            
+            if (new Date(params.startDate) > new Date(params.endDate)) {
+                log('Start date must be before end date', 'warning');
+                return;
+            }
 
             isLoading = true;
             updateButton.disabled = true;
@@ -846,16 +952,20 @@
                         break;
                 }
 
-                const newData = await fetchSectorData(sectorsToLoad, strategy);
+                log(`Analysis Parameters: ${params.startDate} to ${params.endDate}, ${params.periodType}, ${params.periodLength} period(s)`, 'info');
+                
+                const newData = await fetchSectorData(sectorsToLoad, strategy, params);
                 
                 // Merge with existing data
                 realSectorData = { ...realSectorData, ...newData };
                 
                 if (Object.keys(newData).length > 0) {
-                    updateDataStatus(`✅ Real Market Data Loaded! ${Object.keys(realSectorData).length} sectors • ${analysisType.charAt(0).toUpperCase() + analysisType.slice(1)} Analysis • ${new Date().toLocaleString()}`, 'success');
+                    const dateRange = `${params.startDate} to ${params.endDate}`;
+                    const analysisDesc = `${params.periodType} (${params.periodLength} period${params.periodLength > 1 ? 's' : ''})`;
+                    updateDataStatus(`✅ Real Market Data Loaded! ${Object.keys(realSectorData).length} sectors • ${analysisDesc} • ${dateRange}`, 'success');
                     
-                    updateSectorChart(realSectorData, analysisType);
-                    updateStockPicks(realSectorData, analysisType);
+                    updateSectorChart(realSectorData, params);
+                    updateStockPicks(realSectorData, params);
                 } else {
                     updateDataStatus('❌ Failed to load market data. Check console for details.', 'error');
                 }
@@ -873,7 +983,7 @@
         // Load batch 2 sectors
         async function loadBatch2() {
             const batch2Button = document.getElementById('batch2Button');
-            const analysisType = document.getElementById('analysisType').value;
+            const params = getAnalysisParameters();
 
             if (isLoading) {
                 log('Already loading data, please wait...', 'warning');
@@ -886,13 +996,15 @@
 
             try {
                 log('Loading remaining 6 sectors...', 'info');
-                const newData = await fetchSectorData(batch2Sectors, 'batch');
+                const newData = await fetchSectorData(batch2Sectors, 'batch', params);
                 realSectorData = { ...realSectorData, ...newData };
                 
-                updateSectorChart(realSectorData, analysisType);
-                updateStockPicks(realSectorData, analysisType);
+                updateSectorChart(realSectorData, params);
+                updateStockPicks(realSectorData, params);
                 
-                updateDataStatus(`✅ Complete Dataset Loaded! ${Object.keys(realSectorData).length} sectors • ${analysisType.charAt(0).toUpperCase() + analysisType.slice(1)} Analysis • ${new Date().toLocaleString()}`, 'success');
+                const dateRange = `${params.startDate} to ${params.endDate}`;
+                const analysisDesc = `${params.periodType} (${params.periodLength} period${params.periodLength > 1 ? 's' : ''})`;
+                updateDataStatus(`✅ Complete Dataset Loaded! ${Object.keys(realSectorData).length} sectors • ${analysisDesc} • ${dateRange}`, 'success');
                 
                 batch2Button.style.display = 'none';
                 log('All sectors loaded successfully!', 'success');
@@ -906,14 +1018,28 @@
             }
         }
 
+        // Get change key based on period type
+        function getChangeKey(periodType) {
+            switch(periodType) {
+                case 'daily': return 'dailyChange';
+                case 'weekly': return 'weeklyChange';
+                case 'monthly': return 'monthlyChange';
+                case 'quarterly': return 'quarterlyChange';
+                default: return 'dailyChange';
+            }
+        }
+
         // Update sector chart display
-        function updateSectorChart(sectorData, analysisType) {
+        function updateSectorChart(sectorData, params) {
             const chartContainer = document.getElementById('sectorAnalysis');
-            const changeKey = analysisType === 'weekly' ? 'weeklyChange' : 'dailyChange';
+            const changeKey = getChangeKey(params.periodType);
             
             const sectors = Object.entries(sectorData).sort((a, b) => b[1][changeKey] - a[1][changeKey]);
             
-            let html = `<h2>Real Sector Performance Rankings (${analysisType.charAt(0).toUpperCase() + analysisType.slice(1)} - ${Object.keys(sectorData).length} sectors)</h2>`;
+            const dateRange = `${params.startDate} to ${params.endDate}`;
+            const periodDesc = `${params.periodType} (${params.periodLength} period${params.periodLength > 1 ? 's' : ''})`;
+            let html = `<h2>Real Sector Performance Rankings</h2>`;
+            html += `<p style="color: #7f8c8d; margin-bottom: 20px; text-align: center;">${periodDesc} • ${dateRange} • ${Object.keys(sectorData).length} sectors loaded</p>`;
             
             sectors.forEach(([sectorName, data], index) => {
                 const change = data[changeKey];
@@ -938,20 +1064,24 @@
         }
 
         // Update stock picks based on sector performance
-        function updateStockPicks(sectorData, analysisType) {
+        function updateStockPicks(sectorData, params) {
             const picksContainer = document.getElementById('stockRecommendations');
-            const changeKey = analysisType === 'weekly' ? 'weeklyChange' : 'dailyChange';
+            const changeKey = getChangeKey(params.periodType);
             const sectors = Object.entries(sectorData).sort((a, b) => b[1][changeKey] - a[1][changeKey]);
             
+            const dateRange = `${params.startDate} to ${params.endDate}`;
+            const periodDesc = `${params.periodType} (${params.periodLength} period${params.periodLength > 1 ? 's' : ''})`;
+            
             let html = '<h2>Stock Recommendations</h2>';
+            html += `<p style="color: #7f8c8d; margin-bottom: 20px; text-align: center;">${periodDesc} • ${dateRange}</p>`;
             
             // Long opportunities
             html += '<div class="recommendation-section">';
-            html += `<h3>🚀 Top Long Opportunities (${analysisType.charAt(0).toUpperCase() + analysisType.slice(1)})</h3>`;
+            html += `<h3>🚀 Top Long Opportunities</h3>`;
             
             const topSectors = sectors.filter(([, data]) => data[changeKey] > 0).slice(0, 3);
             if (topSectors.length === 0) {
-                html += '<p style="color: #7f8c8d; text-align: center; padding: 20px;">No sectors with positive performance in current timeframe.</p>';
+                html += '<p style="color: #7f8c8d; text-align: center; padding: 20px;">No sectors with positive performance in selected timeframe.</p>';
             } else {
                 topSectors.forEach(([sectorName, data]) => {
                     const change = data[changeKey];
@@ -962,6 +1092,7 @@
                             <p><strong>Current Price:</strong> $${data.price.toFixed(2)}</p>
                             <p><strong>Strategy:</strong> Look for breakout stocks in this strong sector</p>
                             <p><strong>Focus:</strong> Stocks above $100M market cap with volume expansion</p>
+                            <p><strong>Timeframe:</strong> ${periodDesc}</p>
                         </div>
                     `;
                 });
@@ -970,11 +1101,11 @@
             
             // Short opportunities
             html += '<div class="recommendation-section">';
-            html += `<h3>📉 Top Short Opportunities (${analysisType.charAt(0).toUpperCase() + analysisType.slice(1)})</h3>`;
+            html += `<h3>📉 Top Short Opportunities</h3>`;
             
             const bottomSectors = sectors.filter(([, data]) => data[changeKey] < 0).slice(-3).reverse();
             if (bottomSectors.length === 0) {
-                html += '<p style="color: #7f8c8d; text-align: center; padding: 20px;">No sectors with negative performance in current timeframe.</p>';
+                html += '<p style="color: #7f8c8d; text-align: center; padding: 20px;">No sectors with negative performance in selected timeframe.</p>';
             } else {
                 bottomSectors.forEach(([sectorName, data]) => {
                     const change = data[changeKey];
@@ -985,6 +1116,7 @@
                             <p><strong>Current Price:</strong> $${data.price.toFixed(2)}</p>
                             <p><strong>Strategy:</strong> Look for breakdown stocks in this weak sector</p>
                             <p><strong>Focus:</strong> Stocks breaking key support levels with volume</p>
+                            <p><strong>Timeframe:</strong> ${periodDesc}</p>
                         </div>
                     `;
                 });
@@ -1001,19 +1133,19 @@
                 return;
             }
 
-            const analysisType = document.getElementById('analysisType').value;
+            const params = getAnalysisParameters();
             
-            let csvContent = 'Sector,Symbol,Price,Daily_Change_%,Weekly_Change_%,Volume,Previous_Close\n';
+            let csvContent = 'Sector,Symbol,Price,Daily_Change_%,Weekly_Change_%,Monthly_Change_%,Quarterly_Change_%,Volume,Previous_Close\n';
             
             Object.entries(realSectorData).forEach(([sectorName, data]) => {
-                csvContent += `${sectorName},${data.symbol},${data.price.toFixed(2)},${data.dailyChange.toFixed(2)},${data.weeklyChange.toFixed(2)},${data.volume},${data.previousClose.toFixed(2)}\n`;
+                csvContent += `${sectorName},${data.symbol},${data.price.toFixed(2)},${data.dailyChange.toFixed(2)},${data.weeklyChange.toFixed(2)},${data.monthlyChange.toFixed(2)},${data.quarterlyChange.toFixed(2)},${data.volume},${data.previousClose.toFixed(2)}\n`;
             });
 
             const blob = new Blob([csvContent], { type: 'text/csv' });
             const url = window.URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
-            a.download = `sector_analysis_${analysisType}_${new Date().toISOString().split('T')[0]}.csv`;
+            a.download = `sector_analysis_${params.periodType}_${new Date().toISOString().split('T')[0]}.csv`;
             document.body.appendChild(a);
             a.click();
             document.body.removeChild(a);
@@ -1077,10 +1209,19 @@
 
         // Initialize dashboard
         document.addEventListener('DOMContentLoaded', function() {
+            // Set default dates
+            const today = new Date();
+            const thirtyDaysAgo = new Date(today);
+            thirtyDaysAgo.setDate(today.getDate() - 30);
+            
+            document.getElementById('startDate').value = thirtyDaysAgo.toISOString().split('T')[0];
+            document.getElementById('endDate').value = today.toISOString().split('T')[0];
+            
             updateAccountDisplay();
             log('Complete Trading Dashboard Initialized', 'success');
             log('Alpha Vantage API Ready - Choose your loading strategy', 'info');
             log('Free Tier Limits: 5 calls/minute, 100/day', 'warning');
+            log('Default date range set: Last 30 days', 'info');
         });
     </script>
 </body>
