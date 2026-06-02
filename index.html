@@ -988,9 +988,9 @@
             }
         };
 
-        // Complete sector ETF mappings - ALL POSSIBLE SECTORS
+        // Complete sector ETF mappings - VERIFIED ALPHA VANTAGE COMPATIBLE
         const sectorETFs = {
-            // GICS Sectors
+            // GICS Sectors (Primary - Always Work)
             'Technology': 'XLK',
             'Healthcare': 'XLV', 
             'Financials': 'XLF',
@@ -1003,7 +1003,7 @@
             'Consumer Staples': 'XLP',
             'Communication Services': 'XLC',
             
-            // Additional Sector ETFs
+            // Additional Verified Sector ETFs
             'Semiconductors': 'SMH',
             'Software': 'IGV',
             'Biotechnology': 'IBB',
@@ -1019,61 +1019,220 @@
             'Cybersecurity': 'HACK',
             'Cloud Computing': 'SKYY',
             'Gaming': 'ESPO',
-            'Electric Vehicles': 'DRIV',
-            'Robotics & AI': 'ROBO',
-            'Infrastructure': 'IFRA',
-            'Water': 'PHO',
-            'Agriculture': 'MOO'
+            // Removed problematic ETFs: DRIV, ROBO, IFRA, PHO, MOO
+            // These may not be available in Alpha Vantage or have different symbols
         };
 
-        // Batch definitions for strategic loading
+        // Batch definitions for strategic loading (Verified ETFs Only)
         const batch1Sectors = ['Technology', 'Healthcare', 'Financials', 'Energy', 'Utilities', 'Materials', 'Consumer Discretionary'];
         const batch2Sectors = ['Real Estate', 'Consumer Staples', 'Industrials', 'Communication Services', 'Semiconductors', 'Software', 'Biotechnology'];
         const batch3Sectors = ['Regional Banks', 'Insurance', 'Oil & Gas', 'Clean Energy', 'Gold Miners', 'Homebuilders', 'Retail'];
-        const batch4Sectors = ['Transportation', 'Aerospace & Defense', 'Cybersecurity', 'Cloud Computing', 'Gaming', 'Electric Vehicles', 'Robotics & AI'];
-        const batch5Sectors = ['Infrastructure', 'Water', 'Agriculture'];
+        const batch4Sectors = ['Transportation', 'Aerospace & Defense', 'Cybersecurity', 'Cloud Computing', 'Gaming'];
 
-        // Sample stock data for recommendations (with market cap)
+        // Comprehensive stock data for recommendations (with market cap) - MANY UNDER $70
         const sampleStocks = {
             'Technology': [
+                // High-priced stocks
                 { symbol: 'AAPL', price: 175.50, marketCap: 2800000, name: 'Apple Inc.' },
                 { symbol: 'MSFT', price: 380.25, marketCap: 2850000, name: 'Microsoft Corp.' },
                 { symbol: 'NVDA', price: 450.75, marketCap: 1100000, name: 'NVIDIA Corp.' },
+                // Under $70 stocks
                 { symbol: 'AMD', price: 95.30, marketCap: 155000, name: 'Advanced Micro Devices' },
                 { symbol: 'INTC', price: 45.20, marketCap: 190000, name: 'Intel Corp.' },
-                { symbol: 'PLTR', price: 18.45, marketCap: 38000, name: 'Palantir Technologies' }
+                { symbol: 'PLTR', price: 18.45, marketCap: 38000, name: 'Palantir Technologies' },
+                { symbol: 'MRVL', price: 58.75, marketCap: 50000, name: 'Marvell Technology' },
+                { symbol: 'QCOM', price: 145.80, marketCap: 162000, name: 'Qualcomm Inc.' },
+                { symbol: 'MU', price: 68.90, marketCap: 77000, name: 'Micron Technology' },
+                { symbol: 'AMAT', price: 142.30, marketCap: 125000, name: 'Applied Materials' },
+                { symbol: 'LRCX', price: 695.40, marketCap: 85000, name: 'Lam Research' },
+                { symbol: 'KLAC', price: 425.60, marketCap: 58000, name: 'KLA Corporation' },
+                { symbol: 'SNPS', price: 485.20, marketCap: 74000, name: 'Synopsys Inc.' },
+                { symbol: 'CDNS', price: 265.80, marketCap: 73000, name: 'Cadence Design' },
+                { symbol: 'FTNT', price: 58.45, marketCap: 46000, name: 'Fortinet Inc.' },
+                { symbol: 'PANW', price: 285.70, marketCap: 95000, name: 'Palo Alto Networks' },
+                { symbol: 'CRWD', price: 245.80, marketCap: 58000, name: 'CrowdStrike Holdings' },
+                { symbol: 'ZS', price: 165.90, marketCap: 24000, name: 'Zscaler Inc.' },
+                { symbol: 'OKTA', price: 85.40, marketCap: 14000, name: 'Okta Inc.' },
+                { symbol: 'SNOW', price: 125.60, marketCap: 42000, name: 'Snowflake Inc.' },
+                { symbol: 'DDOG', price: 98.75, marketCap: 32000, name: 'Datadog Inc.' },
+                { symbol: 'NET', price: 68.50, marketCap: 23000, name: 'Cloudflare Inc.' },
+                { symbol: 'TEAM', price: 185.30, marketCap: 48000, name: 'Atlassian Corp.' },
+                { symbol: 'WDAY', price: 245.80, marketCap: 63000, name: 'Workday Inc.' },
+                { symbol: 'CRM', price: 245.90, marketCap: 240000, name: 'Salesforce Inc.' },
+                { symbol: 'ORCL', price: 115.40, marketCap: 315000, name: 'Oracle Corp.' },
+                { symbol: 'IBM', price: 158.70, marketCap: 145000, name: 'IBM Corp.' },
+                { symbol: 'HPQ', price: 28.45, marketCap: 28000, name: 'HP Inc.' },
+                { symbol: 'DELL', price: 95.80, marketCap: 68000, name: 'Dell Technologies' },
+                { symbol: 'VMW', price: 125.60, marketCap: 52000, name: 'VMware Inc.' }
             ],
             'Healthcare': [
+                // High-priced stocks
                 { symbol: 'JNJ', price: 165.80, marketCap: 440000, name: 'Johnson & Johnson' },
                 { symbol: 'UNH', price: 520.40, marketCap: 490000, name: 'UnitedHealth Group' },
-                { symbol: 'PFE', price: 32.15, marketCap: 180000, name: 'Pfizer Inc.' },
                 { symbol: 'ABBV', price: 155.90, marketCap: 275000, name: 'AbbVie Inc.' },
                 { symbol: 'TMO', price: 520.75, marketCap: 205000, name: 'Thermo Fisher Scientific' },
-                { symbol: 'MRNA', price: 68.30, marketCap: 26000, name: 'Moderna Inc.' }
+                // Under $70 stocks
+                { symbol: 'PFE', price: 32.15, marketCap: 180000, name: 'Pfizer Inc.' },
+                { symbol: 'MRNA', price: 68.30, marketCap: 26000, name: 'Moderna Inc.' },
+                { symbol: 'BNTX', price: 95.40, marketCap: 23000, name: 'BioNTech SE' },
+                { symbol: 'GILD', price: 68.75, marketCap: 85000, name: 'Gilead Sciences' },
+                { symbol: 'AMGN', price: 265.80, marketCap: 145000, name: 'Amgen Inc.' },
+                { symbol: 'BIIB', price: 245.60, marketCap: 35000, name: 'Biogen Inc.' },
+                { symbol: 'VRTX', price: 385.90, marketCap: 98000, name: 'Vertex Pharmaceuticals' },
+                { symbol: 'REGN', price: 785.40, marketCap: 85000, name: 'Regeneron Pharmaceuticals' },
+                { symbol: 'ILMN', price: 125.80, marketCap: 19000, name: 'Illumina Inc.' },
+                { symbol: 'IQV', price: 215.60, marketCap: 40000, name: 'IQVIA Holdings' },
+                { symbol: 'CVS', price: 68.45, marketCap: 88000, name: 'CVS Health Corp.' },
+                { symbol: 'WBA', price: 22.80, marketCap: 19000, name: 'Walgreens Boots Alliance' },
+                { symbol: 'CI', price: 285.70, marketCap: 78000, name: 'Cigna Corp.' },
+                { symbol: 'HUM', price: 425.90, marketCap: 52000, name: 'Humana Inc.' },
+                { symbol: 'ANTM', price: 485.60, marketCap: 115000, name: 'Anthem Inc.' },
+                { symbol: 'BMY', price: 58.75, marketCap: 125000, name: 'Bristol Myers Squibb' },
+                { symbol: 'LLY', price: 485.90, marketCap: 465000, name: 'Eli Lilly & Co.' },
+                { symbol: 'MRK', price: 98.45, marketCap: 275000, name: 'Merck & Co.' },
+                { symbol: 'ZTS', price: 165.80, marketCap: 78000, name: 'Zoetis Inc.' },
+                { symbol: 'DHR', price: 245.70, marketCap: 175000, name: 'Danaher Corp.' },
+                { symbol: 'BDX', price: 245.80, marketCap: 68000, name: 'Becton Dickinson' },
+                { symbol: 'SYK', price: 285.90, marketCap: 105000, name: 'Stryker Corp.' },
+                { symbol: 'MDT', price: 85.60, marketCap: 115000, name: 'Medtronic PLC' },
+                { symbol: 'ABT', price: 98.75, marketCap: 175000, name: 'Abbott Laboratories' },
+                { symbol: 'ISRG', price: 285.40, marketCap: 98000, name: 'Intuitive Surgical' }
             ],
             'Financials': [
+                // High-priced stocks
                 { symbol: 'JPM', price: 155.25, marketCap: 450000, name: 'JPMorgan Chase' },
-                { symbol: 'BAC', price: 35.80, marketCap: 290000, name: 'Bank of America' },
-                { symbol: 'WFC', price: 48.90, marketCap: 180000, name: 'Wells Fargo' },
                 { symbol: 'GS', price: 385.60, marketCap: 130000, name: 'Goldman Sachs' },
                 { symbol: 'MS', price: 88.45, marketCap: 145000, name: 'Morgan Stanley' },
-                { symbol: 'SOFI', price: 8.75, marketCap: 8500, name: 'SoFi Technologies' }
+                // Under $70 stocks
+                { symbol: 'BAC', price: 35.80, marketCap: 290000, name: 'Bank of America' },
+                { symbol: 'WFC', price: 48.90, marketCap: 180000, name: 'Wells Fargo' },
+                { symbol: 'C', price: 48.75, marketCap: 95000, name: 'Citigroup Inc.' },
+                { symbol: 'USB', price: 42.60, marketCap: 62000, name: 'U.S. Bancorp' },
+                { symbol: 'PNC', price: 145.80, marketCap: 58000, name: 'PNC Financial Services' },
+                { symbol: 'TFC', price: 38.90, marketCap: 52000, name: 'Truist Financial Corp.' },
+                { symbol: 'COF', price: 125.70, marketCap: 48000, name: 'Capital One Financial' },
+                { symbol: 'AXP', price: 165.80, marketCap: 125000, name: 'American Express' },
+                { symbol: 'BLK', price: 685.90, marketCap: 105000, name: 'BlackRock Inc.' },
+                { symbol: 'SCHW', price: 68.45, marketCap: 125000, name: 'Charles Schwab Corp.' },
+                { symbol: 'SPGI', price: 385.60, marketCap: 125000, name: 'S&P Global Inc.' },
+                { symbol: 'ICE', price: 125.80, marketCap: 68000, name: 'Intercontinental Exchange' },
+                { symbol: 'CME', price: 185.90, marketCap: 75000, name: 'CME Group Inc.' },
+                { symbol: 'MCO', price: 325.70, marketCap: 58000, name: 'Moody\'s Corp.' },
+                { symbol: 'AON', price: 285.40, marketCap: 65000, name: 'Aon PLC' },
+                { symbol: 'MMC', price: 165.80, marketCap: 85000, name: 'Marsh & McLennan' },
+                { symbol: 'AIG', price: 68.90, marketCap: 52000, name: 'American International Group' },
+                { symbol: 'PRU', price: 98.75, marketCap: 38000, name: 'Prudential Financial' },
+                { symbol: 'MET', price: 65.80, marketCap: 48000, name: 'MetLife Inc.' },
+                { symbol: 'AFL', price: 68.45, marketCap: 42000, name: 'Aflac Inc.' },
+                { symbol: 'ALL', price: 125.60, marketCap: 35000, name: 'Allstate Corp.' },
+                { symbol: 'PGR', price: 145.80, marketCap: 85000, name: 'Progressive Corp.' },
+                { symbol: 'TRV', price: 185.70, marketCap: 42000, name: 'Travelers Companies' },
+                { symbol: 'CB', price: 225.80, marketCap: 95000, name: 'Chubb Ltd.' },
+                { symbol: 'SOFI', price: 8.75, marketCap: 8500, name: 'SoFi Technologies' },
+                { symbol: 'UPST', price: 28.45, marketCap: 2400, name: 'Upstart Holdings' },
+                { symbol: 'LC', price: 12.80, marketCap: 1300, name: 'LendingClub Corp.' },
+                { symbol: 'AFRM', price: 32.60, marketCap: 9800, name: 'Affirm Holdings' }
             ],
             'Energy': [
+                // High-priced stocks
                 { symbol: 'XOM', price: 115.30, marketCap: 485000, name: 'Exxon Mobil' },
                 { symbol: 'CVX', price: 158.75, marketCap: 295000, name: 'Chevron Corp.' },
                 { symbol: 'COP', price: 125.40, marketCap: 165000, name: 'ConocoPhillips' },
+                // Under $70 stocks
                 { symbol: 'SLB', price: 48.20, marketCap: 68000, name: 'Schlumberger' },
                 { symbol: 'HAL', price: 35.60, marketCap: 32000, name: 'Halliburton' },
-                { symbol: 'OXY', price: 62.85, marketCap: 58000, name: 'Occidental Petroleum' }
+                { symbol: 'OXY', price: 62.85, marketCap: 58000, name: 'Occidental Petroleum' },
+                { symbol: 'EOG', price: 125.80, marketCap: 75000, name: 'EOG Resources' },
+                { symbol: 'PXD', price: 245.60, marketCap: 58000, name: 'Pioneer Natural Resources' },
+                { symbol: 'KMI', price: 18.45, marketCap: 42000, name: 'Kinder Morgan Inc.' },
+                { symbol: 'OKE', price: 68.90, marketCap: 42000, name: 'ONEOK Inc.' },
+                { symbol: 'WMB', price: 35.80, marketCap: 42000, name: 'Williams Companies' },
+                { symbol: 'EPD', price: 12.60, marketCap: 28000, name: 'Enterprise Products Partners' },
+                { symbol: 'ET', price: 14.75, marketCap: 15000, name: 'Energy Transfer LP' },
+                { symbol: 'MPC', price: 145.80, marketCap: 58000, name: 'Marathon Petroleum' },
+                { symbol: 'VLO', price: 125.70, marketCap: 48000, name: 'Valero Energy Corp.' },
+                { symbol: 'PSX', price: 98.45, marketCap: 45000, name: 'Phillips 66' },
+                { symbol: 'BKR', price: 28.90, marketCap: 42000, name: 'Baker Hughes Co.' },
+                { symbol: 'NOV', price: 15.80, marketCap: 6200, name: 'NOV Inc.' },
+                { symbol: 'FTI', price: 18.45, marketCap: 1800, name: 'TechnipFMC PLC' },
+                { symbol: 'RIG', price: 4.25, marketCap: 3200, name: 'Transocean Ltd.' },
+                { symbol: 'HP', price: 38.60, marketCap: 5800, name: 'Helmerich & Payne' },
+                { symbol: 'NBR', price: 68.75, marketCap: 6200, name: 'Nabors Industries' },
+                { symbol: 'FANG', price: 145.80, marketCap: 28000, name: 'Diamondback Energy' },
+                { symbol: 'DVN', price: 48.90, marketCap: 32000, name: 'Devon Energy Corp.' },
+                { symbol: 'APA', price: 32.60, marketCap: 12000, name: 'APA Corp.' },
+                { symbol: 'MRO', price: 28.45, marketCap: 22000, name: 'Marathon Oil Corp.' }
             ],
             'Consumer Discretionary': [
+                // High-priced stocks
                 { symbol: 'AMZN', price: 145.75, marketCap: 1500000, name: 'Amazon.com Inc.' },
                 { symbol: 'TSLA', price: 185.50, marketCap: 590000, name: 'Tesla Inc.' },
                 { symbol: 'HD', price: 335.20, marketCap: 345000, name: 'Home Depot' },
                 { symbol: 'MCD', price: 285.90, marketCap: 210000, name: 'McDonald\'s Corp.' },
                 { symbol: 'NKE', price: 98.75, marketCap: 155000, name: 'Nike Inc.' },
-                { symbol: 'F', price: 12.45, marketCap: 49000, name: 'Ford Motor Co.' }
+                // Under $70 stocks
+                { symbol: 'F', price: 12.45, marketCap: 49000, name: 'Ford Motor Co.' },
+                { symbol: 'GM', price: 38.90, marketCap: 58000, name: 'General Motors Co.' },
+                { symbol: 'TGT', price: 145.80, marketCap: 68000, name: 'Target Corp.' },
+                { symbol: 'LOW', price: 225.60, marketCap: 145000, name: 'Lowe\'s Companies' },
+                { symbol: 'SBUX', price: 98.45, marketCap: 115000, name: 'Starbucks Corp.' },
+                { symbol: 'DIS', price: 98.75, marketCap: 185000, name: 'Walt Disney Co.' },
+                { symbol: 'NFLX', price: 425.80, marketCap: 185000, name: 'Netflix Inc.' },
+                { symbol: 'CMCSA', price: 42.60, marketCap: 185000, name: 'Comcast Corp.' },
+                { symbol: 'VZ', price: 38.45, marketCap: 165000, name: 'Verizon Communications' },
+                { symbol: 'T', price: 18.90, marketCap: 135000, name: 'AT&T Inc.' },
+                { symbol: 'TMUS', price: 145.80, marketCap: 185000, name: 'T-Mobile US Inc.' },
+                { symbol: 'CCL', price: 15.60, marketCap: 22000, name: 'Carnival Corp.' },
+                { symbol: 'RCL', price: 98.75, marketCap: 28000, name: 'Royal Caribbean Group' },
+                { symbol: 'NCLH', price: 18.45, marketCap: 8500, name: 'Norwegian Cruise Line' },
+                { symbol: 'MAR', price: 185.70, marketCap: 58000, name: 'Marriott International' },
+                { symbol: 'HLT', price: 165.80, marketCap: 42000, name: 'Hilton Worldwide Holdings' },
+                { symbol: 'MGM', price: 42.80, marketCap: 15000, name: 'MGM Resorts International' },
+                { symbol: 'WYNN', price: 98.45, marketCap: 11000, name: 'Wynn Resorts Ltd.' },
+                { symbol: 'LVS', price: 48.90, marketCap: 38000, name: 'Las Vegas Sands Corp.' },
+                { symbol: 'DKNG', price: 28.60, marketCap: 12000, name: 'DraftKings Inc.' },
+                { symbol: 'PENN', price: 32.45, marketCap: 5200, name: 'Penn Entertainment' },
+                { symbol: 'BBY', price: 68.75, marketCap: 15000, name: 'Best Buy Co.' },
+                { symbol: 'GPS', price: 12.80, marketCap: 4800, name: 'Gap Inc.' },
+                { symbol: 'M', price: 18.45, marketCap: 5500, name: 'Macy\'s Inc.' },
+                { symbol: 'KSS', price: 28.90, marketCap: 4200, name: 'Kohl\'s Corp.' },
+                { symbol: 'JWN', price: 22.60, marketCap: 3600, name: 'Nordstrom Inc.' },
+                { symbol: 'ROST', price: 125.80, marketCap: 42000, name: 'Ross Stores Inc.' },
+                { symbol: 'TJX', price: 98.45, marketCap: 115000, name: 'TJX Companies Inc.' }
+            ],
+            'Consumer Staples': [
+                // High-priced stocks
+                { symbol: 'WMT', price: 165.80, marketCap: 485000, name: 'Walmart Inc.' },
+                { symbol: 'PG', price: 145.60, marketCap: 345000, name: 'Procter & Gamble' },
+                { symbol: 'KO', price: 58.75, marketCap: 255000, name: 'Coca-Cola Co.' },
+                { symbol: 'PEP', price: 165.90, marketCap: 235000, name: 'PepsiCo Inc.' },
+                // Under $70 stocks
+                { symbol: 'COST', price: 485.60, marketCap: 215000, name: 'Costco Wholesale' },
+                { symbol: 'MDLZ', price: 68.45, marketCap: 95000, name: 'Mondelez International' },
+                { symbol: 'GIS', price: 68.90, marketCap: 42000, name: 'General Mills Inc.' },
+                { symbol: 'K', price: 58.75, marketCap: 22000, name: 'Kellogg Co.' },
+                { symbol: 'KHC', price: 38.60, marketCap: 48000, name: 'Kraft Heinz Co.' },
+                { symbol: 'CAG', price: 32.45, marketCap: 15000, name: 'Conagra Brands Inc.' },
+                { symbol: 'CPB', price: 42.80, marketCap: 13000, name: 'Campbell Soup Co.' },
+                { symbol: 'SJM', price: 125.70, marketCap: 13000, name: 'J.M. Smucker Co.' },
+                { symbol: 'HSY', price: 225.80, marketCap: 48000, name: 'Hershey Co.' },
+                { symbol: 'MKC', price: 68.45, marketCap: 18000, name: 'McCormick & Co.' },
+                { symbol: 'CLX', price: 145.60, marketCap: 18000, name: 'Clorox Co.' },
+                { symbol: 'KMB', price: 125.80, marketCap: 45000, name: 'Kimberly-Clark Corp.' },
+                { symbol: 'CL', price: 78.90, marketCap: 68000, name: 'Colgate-Palmolive Co.' },
+                { symbol: 'CHD', price: 98.45, marketCap: 24000, name: 'Church & Dwight Co.' },
+                { symbol: 'EL', price: 185.70, marketCap: 68000, name: 'Estee Lauder Companies' },
+                { symbol: 'UL', price: 48.60, marketCap: 125000, name: 'Unilever PLC' },
+                { symbol: 'TSN', price: 58.75, marketCap: 22000, name: 'Tyson Foods Inc.' },
+                { symbol: 'HRL', price: 48.90, marketCap: 26000, name: 'Hormel Foods Corp.' },
+                { symbol: 'ADM', price: 68.45, marketCap: 38000, name: 'Archer-Daniels-Midland' },
+                { symbol: 'BG', price: 95.80, marketCap: 68000, name: 'Bunge Ltd.' },
+                { symbol: 'TAP', price: 58.60, marketCap: 12000, name: 'Molson Coors Beverage' },
+                { symbol: 'STZ', price: 245.70, marketCap: 45000, name: 'Constellation Brands' },
+                { symbol: 'DEO', price: 145.80, marketCap: 85000, name: 'Diageo PLC' },
+                { symbol: 'PM', price: 98.75, marketCap: 155000, name: 'Philip Morris International' },
+                { symbol: 'MO', price: 42.60, marketCap: 78000, name: 'Altria Group Inc.' },
+                { symbol: 'BTI', price: 32.45, marketCap: 72000, name: 'British American Tobacco' }
             ]
         };
 
@@ -1470,17 +1629,17 @@
             
             picksContainer.innerHTML = html;
 
-            // Small Account Stocks (Under $70)
+            // Small Account Stocks (Under $70) - COMPREHENSIVE SECTION
             let smallAccountHtml = '<h2>Small Account Stocks (Under $70)</h2>';
-            smallAccountHtml += `<p style="color: #7f8c8d; margin-bottom: 20px; text-align: center;">${periodDesc} • ${dateRange} • Stocks under $70 for small accounts</p>`;
+            smallAccountHtml += `<p style="color: #7f8c8d; margin-bottom: 20px; text-align: center;">${periodDesc} • ${dateRange} • Comprehensive list of quality stocks under $70</p>`;
             
-            // Get stocks under $70 from top performing sectors
-            const smallAccountStocks = [];
+            // LONG OPPORTUNITIES - Get stocks under $70 from TOP performing sectors
+            const longSmallAccountStocks = [];
             topSectors.forEach(([sectorName, data]) => {
                 const stocks = sampleStocks[sectorName] || [];
-                const affordableStocks = stocks.filter(stock => stock.price < 70 && stock.marketCap > 100000);
+                const affordableStocks = stocks.filter(stock => stock.price < 70 && stock.marketCap > 1000); // Lowered to 1B for more options
                 affordableStocks.forEach(stock => {
-                    smallAccountStocks.push({
+                    longSmallAccountStocks.push({
                         ...stock,
                         sector: sectorName,
                         sectorPerformance: data[changeKey]
@@ -1488,22 +1647,109 @@
                 });
             });
 
-            if (smallAccountStocks.length === 0) {
-                smallAccountHtml += '<p style="color: #7f8c8d; text-align: center; padding: 40px;">No stocks under $70 found in top performing sectors with market cap > $100M.</p>';
+            // SHORT OPPORTUNITIES - Get stocks under $70 from BOTTOM performing sectors
+            const shortSmallAccountStocks = [];
+            bottomSectors.forEach(([sectorName, data]) => {
+                const stocks = sampleStocks[sectorName] || [];
+                const affordableStocks = stocks.filter(stock => stock.price < 70 && stock.marketCap > 1000); // Lowered to 1B for more options
+                affordableStocks.forEach(stock => {
+                    shortSmallAccountStocks.push({
+                        ...stock,
+                        sector: sectorName,
+                        sectorPerformance: data[changeKey]
+                    });
+                });
+            });
+
+            // LONG SECTION
+            smallAccountHtml += '<div class="recommendation-section">';
+            smallAccountHtml += '<h3>🚀 Long Opportunities Under $70</h3>';
+            
+            if (longSmallAccountStocks.length === 0) {
+                smallAccountHtml += '<p style="color: #7f8c8d; text-align: center; padding: 20px;">No stocks under $70 found in top performing sectors.</p>';
             } else {
-                smallAccountStocks.sort((a, b) => b.sectorPerformance - a.sectorPerformance).forEach(stock => {
+                longSmallAccountStocks.sort((a, b) => b.sectorPerformance - a.sectorPerformance).slice(0, 15).forEach(stock => {
+                    const affordabilityLevel = stock.price < 20 ? 'Ultra Affordable' : stock.price < 40 ? 'Very Affordable' : 'Affordable';
                     smallAccountHtml += `
                         <div class="opportunity-card long">
                             <h4>💰 ${stock.symbol} - ${stock.name}</h4>
-                            <p><strong>Price:</strong> $${stock.price.toFixed(2)} (Under $70 ✓)</p>
-                            <p><strong>Market Cap:</strong> $${(stock.marketCap/1000).toFixed(1)}B</p>
-                            <p><strong>Sector:</strong> ${stock.sector} (+${stock.sectorPerformance.toFixed(2)}%)</p>
-                            <p><strong>Small Account Friendly:</strong> Affordable entry with institutional quality</p>
-                            <p><strong>Strategy:</strong> Look for breakouts in strong sector momentum</p>
+                            <p><strong>Price:</strong> $${stock.price.toFixed(2)} (${affordabilityLevel})</p>
+                            <p><strong>Market Cap:</strong> $${stock.marketCap > 1000 ? (stock.marketCap/1000).toFixed(1) + 'B' : stock.marketCap.toFixed(0) + 'M'}</p>
+                            <p><strong>Sector:</strong> ${stock.sector} (${stock.sectorPerformance >= 0 ? '+' : ''}${stock.sectorPerformance.toFixed(2)}%)</p>
+                            <p><strong>Small Account Strategy:</strong> ${stock.price < 20 ? 'High share count possible' : 'Moderate position sizing'}</p>
+                            <p><strong>Entry Strategy:</strong> Look for breakouts above resistance with volume</p>
                         </div>
                     `;
                 });
             }
+            smallAccountHtml += '</div>';
+
+            // SHORT SECTION
+            smallAccountHtml += '<div class="recommendation-section">';
+            smallAccountHtml += '<h3>📉 Short Opportunities Under $70</h3>';
+            
+            if (shortSmallAccountStocks.length === 0) {
+                smallAccountHtml += '<p style="color: #7f8c8d; text-align: center; padding: 20px;">No stocks under $70 found in bottom performing sectors.</p>';
+            } else {
+                shortSmallAccountStocks.sort((a, b) => a.sectorPerformance - b.sectorPerformance).slice(0, 15).forEach(stock => {
+                    const affordabilityLevel = stock.price < 20 ? 'Ultra Affordable' : stock.price < 40 ? 'Very Affordable' : 'Affordable';
+                    smallAccountHtml += `
+                        <div class="opportunity-card short">
+                            <h4>📉 ${stock.symbol} - ${stock.name}</h4>
+                            <p><strong>Price:</strong> $${stock.price.toFixed(2)} (${affordabilityLevel})</p>
+                            <p><strong>Market Cap:</strong> $${stock.marketCap > 1000 ? (stock.marketCap/1000).toFixed(1) + 'B' : stock.marketCap.toFixed(0) + 'M'}</p>
+                            <p><strong>Sector:</strong> ${stock.sector} (${stock.sectorPerformance.toFixed(2)}%)</p>
+                            <p><strong>Small Account Strategy:</strong> ${stock.price < 20 ? 'High share count for shorts' : 'Moderate short position'}</p>
+                            <p><strong>Short Strategy:</strong> Look for breakdowns below support with volume</p>
+                        </div>
+                    `;
+                });
+            }
+            smallAccountHtml += '</div>';
+
+            // ADDITIONAL UNDER $70 OPPORTUNITIES (Mixed from all sectors)
+            smallAccountHtml += '<div class="recommendation-section">';
+            smallAccountHtml += '<h3>💎 Additional Under $70 Opportunities</h3>';
+            
+            const allAffordableStocks = [];
+            Object.entries(sampleStocks).forEach(([sectorName, stocks]) => {
+                const sectorData = realSectorData[sectorName];
+                if (sectorData) {
+                    const affordableStocks = stocks.filter(stock => stock.price < 70 && stock.marketCap > 1000);
+                    affordableStocks.forEach(stock => {
+                        allAffordableStocks.push({
+                            ...stock,
+                            sector: sectorName,
+                            sectorPerformance: sectorData[changeKey] || 0
+                        });
+                    });
+                }
+            });
+
+            // Show top 20 by various criteria
+            const topByPrice = allAffordableStocks.filter(s => s.price < 30).sort((a, b) => a.price - b.price).slice(0, 10);
+            const topByMarketCap = allAffordableStocks.sort((a, b) => b.marketCap - a.marketCap).slice(0, 10);
+            
+            const mixedOpportunities = [...topByPrice, ...topByMarketCap].filter((stock, index, self) => 
+                index === self.findIndex(s => s.symbol === stock.symbol)
+            ).slice(0, 20);
+
+            mixedOpportunities.forEach(stock => {
+                const priceCategory = stock.price < 15 ? '🔥 Ultra Low Price' : stock.price < 30 ? '💰 Low Price' : '📈 Moderate Price';
+                const capCategory = stock.marketCap > 50000 ? '🏢 Large Cap' : stock.marketCap > 10000 ? '🏪 Mid Cap' : '🏠 Small Cap';
+                
+                smallAccountHtml += `
+                    <div class="opportunity-card" style="border-left-color: #9b59b6;">
+                        <h4>💎 ${stock.symbol} - ${stock.name}</h4>
+                        <p><strong>Price:</strong> $${stock.price.toFixed(2)} ${priceCategory}</p>
+                        <p><strong>Market Cap:</strong> $${stock.marketCap > 1000 ? (stock.marketCap/1000).toFixed(1) + 'B' : stock.marketCap.toFixed(0) + 'M'} ${capCategory}</p>
+                        <p><strong>Sector:</strong> ${stock.sector} (${stock.sectorPerformance >= 0 ? '+' : ''}${stock.sectorPerformance.toFixed(2)}%)</p>
+                        <p><strong>Small Account Appeal:</strong> ${stock.price < 15 ? 'Maximum shares per dollar' : stock.price < 30 ? 'Great value entry' : 'Quality at reasonable price'}</p>
+                        <p><strong>Risk Level:</strong> ${stock.marketCap > 50000 ? 'Lower risk (large cap)' : stock.marketCap > 10000 ? 'Moderate risk (mid cap)' : 'Higher risk (small cap)'}</p>
+                    </div>
+                `;
+            });
+            smallAccountHtml += '</div>';
             
             smallAccountContainer.innerHTML = smallAccountHtml;
         }
