@@ -11,13 +11,6 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="Trading Dashboard">
     
-    <!-- PWA Icons -->
-    <link rel="apple-touch-icon" sizes="180x180" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgwIiBoZWlnaHQ9IjE4MCIgdmlld0JveD0iMCAwIDE4MCAxODAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxODAiIGhlaWdodD0iMTgwIiBmaWxsPSIjMWUzYzcyIi8+CjxwYXRoIGQ9Ik00NSA2MEg3NVY5MEg0NVY2MFoiIGZpbGw9IndoaXRlIi8+CjxwYXRoIGQ9Ik05MCA2MEgxMjBWOTBIOTBWNjBaIiBmaWxsPSJ3aGl0ZSIvPgo8cGF0aCBkPSJNNDUgMTA1SDc1VjEzNUg0NVYxMDVaIiBmaWxsPSJ3aGl0ZSIvPgo8cGF0aCBkPSJNOTAgMTA1SDEyMFYxMzVIOTBWMTA1WiIgZmlsbD0id2hpdGUiLz4KPC9zdmc+">
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAzMiAzMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIiBmaWxsPSIjMWUzYzcyIi8+CjxwYXRoIGQ9Ik04IDEwSDE0VjE2SDhWMTBaIiBmaWxsPSJ3aGl0ZSIvPgo8cGF0aCBkPSJNMTggMTBIMjRWMTZIMThWMTBaIiBmaWxsPSJ3aGl0ZSIvPgo8cGF0aCBkPSJNOCAyMEgxNFYyNkg4VjIwWiIgZmlsbD0id2hpdGUiLz4KPHBhdGggZD0iTTE4IDIwSDI0VjI2SDE4VjIwWiIgZmlsbD0id2hpdGUiLz4KPC9zdmc+">
-    
-    <!-- Manifest -->
-    <link rel="manifest" href="data:application/json;base64,ewogICJuYW1lIjogIlRyYWRpbmcgRGFzaGJvYXJkIiwKICAic2hvcnRfbmFtZSI6ICJUcmFkaW5nIiwKICAiZGVzY3JpcHRpb24iOiAiQ29tcGxldGUgVHJhZGluZyBTeXN0ZW0gLSBNYXJrZXQgQW5hbHlzaXMgJiBUcmFkZSBNYW5hZ2VtZW50IiwKICAic3RhcnRfdXJsIjogIi8iLAogICJkaXNwbGF5IjogInN0YW5kYWxvbmUiLAogICJiYWNrZ3JvdW5kX2NvbG9yIjogIiMxZTNjNzIiLAogICJ0aGVtZV9jb2xvciI6ICIjMWUzYzcyIiwKICAiaWNvbnMiOiBbCiAgICB7CiAgICAgICJzcmMiOiAiZGF0YTppbWFnZS9zdmcreG1sO2Jhc2U2NCxQSE4yWnlCM2FXUjBhRDBpTVRnd0lpQm9aV2xuYUhROUlqRTRNQ0lpSUhacFpYZENiM2c5SWpBZ01DQXhPREFnTVRnd0lpQm1hV3hzUFNKdWIyNWxJaUI0Yld4dWN6MGlhSFIwY0RvdkwzZDNkeTUzTXk1dmNtY3ZNakF3TUM5emRtY2lQZ284Y21WamRDQjNhV1IwYUQwaU1UZ3dJaUJvWldsbmFIUTlJakU0TUNJS1ptbHNiRDBpSXpGbE0yTTNNaUl2UGdvOGNHRjBhQ0JrUFNKTk5EVWdOakJJTnpWV09UQklORFZXTmtCYUlpQm1hV3hzUFNKM2FHbDBaU0l2UGdvOGNHRjBhQ0JrUFNKTk9UQWdOakJJTVRJd1Zqa3dTRGt3VmpaQVdpSWdabWxzYkQwaWQyaHBkR1VpTHo0S1BIQmhkR2dnWkQwaVRUUTFJREV3TlVnM05WWXhNelZJTkRWV01UQTFXaUlnWm1sc2JEMGlkMmhwZEdVaUx6NEtQSEJoZEdnZ1pEMGlUVGt3SUVFd05VZ3hNakJXTVRNMVNEa3dWakV3TlZvaUlHWnBiR3c5SW5kb2FYUmxJaTgrQ2p3dmMzWm5QZz09IiwKICAgICAgInNpemVzIjogIjE4MHgxODAiLAogICAgICAidHlwZSI6ICJpbWFnZS9zdmcreG1sIgogICAgfQogIF0KfQ==">
-    
     <style>
         * {
             margin: 0;
@@ -446,6 +439,83 @@
             margin-bottom: 5px;
         }
 
+        .trade-section {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        .trade-section h3 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 1.3em;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+
+        .position-calculator {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .calculator-result {
+            background: #e8f4f8;
+            border: 1px solid #bee5eb;
+            color: #0c5460;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+            font-weight: 600;
+        }
+
+        .active-trades-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        .active-trades-table th,
+        .active-trades-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .active-trades-table th {
+            background: #f8f9fa;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        .active-trades-table tr:hover {
+            background: #f8f9fa;
+        }
+
+        .trade-journal {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .journal-entry {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            border-left: 4px solid #3498db;
+        }
+
+        .journal-entry.profit {
+            border-left-color: #27ae60;
+        }
+
+        .journal-entry.loss {
+            border-left-color: #e74c3c;
+        }
+
         .console {
             background: #1a1a1a;
             color: #00ff41;
@@ -518,6 +588,15 @@
             .sector-name, .sector-symbol, .sector-price {
                 margin: 5px 0;
             }
+
+            .active-trades-table {
+                font-size: 12px;
+            }
+
+            .active-trades-table th,
+            .active-trades-table td {
+                padding: 8px;
+            }
         }
     </style>
 </head>
@@ -572,9 +651,9 @@
 
                 <div class="strategy-info">
                     <h4>📋 Loading Strategies</h4>
-                    <p><strong>Fast Load:</strong> 5 key sectors instantly (Tech, Healthcare, Financials, Energy, Utilities)</p>
-                    <p><strong>Smart Load:</strong> All 11 sectors with intelligent 12-second delays (~3 minutes total)</p>
-                    <p><strong>Batch Load:</strong> 5 sectors now + button to load remaining 6 later</p>
+                    <p><strong>Fast Load:</strong> 5 key sectors instantly</p>
+                    <p><strong>Smart Load:</strong> All sectors with intelligent 12-second delays</p>
+                    <p><strong>Batch Load:</strong> Load sectors in batches to manage rate limits</p>
                 </div>
 
                 <h3 style="color: #2c3e50; margin-bottom: 20px; font-size: 1.3em;">Custom Timeframe Analysis</h3>
@@ -620,7 +699,7 @@
                         <div style="display: flex; align-items: center; gap: 10px;">
                             <input type="checkbox" id="realDataCheckbox" checked>
                             <label for="realDataCheckbox" style="margin: 0; font-weight: normal;">
-                                📊 Real Yahoo Finance Data
+                                📊 Real Alpha Vantage Data
                             </label>
                         </div>
                     </div>
@@ -630,9 +709,9 @@
                     <div class="form-group">
                         <label>Loading Strategy</label>
                         <select id="loadingStrategy">
-                            <option value="fast">🚀 Fast Load (5 sectors, instant)</option>
-                            <option value="smart">🧠 Smart Load (11 sectors, ~3 minutes)</option>
-                            <option value="batch">📦 Batch Load (5 now, 6 later)</option>
+                            <option value="fast">🚀 Fast Load (Key sectors)</option>
+                            <option value="smart">🧠 Smart Load (All sectors)</option>
+                            <option value="batch">📦 Batch Load (Staged)</option>
                         </select>
                     </div>
                 </div>
@@ -672,28 +751,209 @@
                     Load market data first to see long and short opportunities based on sector performance.
                 </p>
             </div>
+
+            <div id="smallAccountStocks" class="stock-recommendations">
+                <h2>Small Account Stocks (Under $70)</h2>
+                <p style="color: #7f8c8d; text-align: center; padding: 40px;">
+                    Load market data first to see opportunities for small accounts with stocks under $70.
+                </p>
+            </div>
         </div>
 
         <!-- Trade Management Tab -->
         <div id="trade-management" class="tab-content">
-            <div class="stock-recommendations">
-                <h2>Trade Management</h2>
-                <p style="color: #7f8c8d; text-align: center; padding: 40px;">
-                    This section contains your position sizing, active trades, and trade journal.<br>
-                    <strong>Note:</strong> For the complete trade management system with position sizing, active trades tracking, and trade journal, use the full complete_trading_dashboard.html file.
-                </p>
-                
-                <div style="background: #e8f4f8; border: 1px solid #bee5eb; color: #0c5460; padding: 20px; border-radius: 10px; margin-top: 20px;">
-                    <h4>🔧 Full Trade Management Features Available In:</h4>
-                    <p><strong>complete_trading_dashboard.html</strong></p>
-                    <ul style="margin: 10px 0; padding-left: 20px;">
-                        <li>Position sizing calculator</li>
-                        <li>Active trades tracking</li>
-                        <li>Trade journal with P&L</li>
-                        <li>EMA-based exit management</li>
-                        <li>Risk management tools</li>
-                        <li>Google Sheets integration</li>
-                    </ul>
+            <!-- Position Sizing Calculator -->
+            <div class="trade-section">
+                <h3>💰 Position Sizing Calculator</h3>
+                <div class="position-calculator">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Stock Symbol</label>
+                            <input type="text" id="calcSymbol" placeholder="e.g., AAPL" style="text-transform: uppercase;">
+                        </div>
+                        <div class="form-group">
+                            <label>Entry Price ($)</label>
+                            <input type="number" id="calcEntryPrice" step="0.01" placeholder="0.00">
+                        </div>
+                        <div class="form-group">
+                            <label>Stop Loss ($)</label>
+                            <input type="number" id="calcStopLoss" step="0.01" placeholder="0.00">
+                        </div>
+                        <div class="form-group">
+                            <label>Risk % of Account</label>
+                            <input type="number" id="calcRiskPercent" value="0.5" step="0.1" min="0.1" max="5">
+                        </div>
+                    </div>
+                    <button class="btn" onclick="calculatePosition()">🧮 Calculate Position Size</button>
+                    <div id="calculatorResult" class="calculator-result" style="display: none;"></div>
+                </div>
+            </div>
+
+            <!-- Enter Trade -->
+            <div class="trade-section">
+                <h3>📈 Enter Trade</h3>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Symbol</label>
+                        <input type="text" id="tradeSymbol" placeholder="e.g., AAPL" style="text-transform: uppercase;">
+                    </div>
+                    <div class="form-group">
+                        <label>Entry Price ($)</label>
+                        <input type="number" id="tradeEntryPrice" step="0.01" placeholder="0.00">
+                    </div>
+                    <div class="form-group">
+                        <label>Shares</label>
+                        <input type="number" id="tradeShares" placeholder="0">
+                    </div>
+                    <div class="form-group">
+                        <label>Stop Loss ($)</label>
+                        <input type="number" id="tradeStopLoss" step="0.01" placeholder="0.00">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>9 EMA ($)</label>
+                        <input type="number" id="trade9EMA" step="0.01" placeholder="0.00">
+                    </div>
+                    <div class="form-group">
+                        <label>21 EMA ($)</label>
+                        <input type="number" id="trade21EMA" step="0.01" placeholder="0.00">
+                    </div>
+                    <div class="form-group">
+                        <label>50 EMA ($)</label>
+                        <input type="number" id="trade50EMA" step="0.01" placeholder="0.00">
+                    </div>
+                    <div class="form-group">
+                        <label>Trade Type</label>
+                        <select id="tradeType">
+                            <option value="long">Long</option>
+                            <option value="short">Short</option>
+                        </select>
+                    </div>
+                </div>
+                <button class="btn btn-success" onclick="enterTrade()">📈 Enter Trade</button>
+            </div>
+
+            <!-- Active Trades -->
+            <div class="trade-section">
+                <h3>🎯 Active Trades</h3>
+                <div id="activeTradesContainer">
+                    <table class="active-trades-table">
+                        <thead>
+                            <tr>
+                                <th>Symbol</th>
+                                <th>Type</th>
+                                <th>Shares</th>
+                                <th>Entry</th>
+                                <th>Current</th>
+                                <th>P&L</th>
+                                <th>Stop Loss</th>
+                                <th>9 EMA</th>
+                                <th>21 EMA</th>
+                                <th>50 EMA</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="activeTradesBody">
+                            <tr>
+                                <td colspan="11" style="text-align: center; color: #7f8c8d; padding: 40px;">
+                                    No active trades. Enter a trade to see it here.
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Close Trade -->
+            <div class="trade-section">
+                <h3>📉 Close Trade</h3>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Select Trade</label>
+                        <select id="closeTradeSelect">
+                            <option value="">Select active trade...</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Exit Price ($)</label>
+                        <input type="number" id="closeExitPrice" step="0.01" placeholder="0.00">
+                    </div>
+                    <div class="form-group">
+                        <label>Exit Reason</label>
+                        <select id="closeExitReason">
+                            <option value="profit_target">Profit Target</option>
+                            <option value="stop_loss">Stop Loss</option>
+                            <option value="9_ema_break">9 EMA Break</option>
+                            <option value="21_ema_break">21 EMA Break</option>
+                            <option value="50_ema_break">50 EMA Break</option>
+                            <option value="trailing_stop">Trailing Stop</option>
+                            <option value="manual_exit">Manual Exit</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Trade Notes</label>
+                    <textarea id="closeTradeNotes" rows="3" placeholder="Optional notes about this trade..."></textarea>
+                </div>
+                <button class="btn btn-danger" onclick="closeTrade()">📉 Close Trade</button>
+            </div>
+
+            <!-- Trade Journal -->
+            <div class="trade-section">
+                <h3>📊 Trade Journal</h3>
+                <div class="form-row">
+                    <div class="form-group">
+                        <button class="btn btn-warning" onclick="exportTradeJournal()">📊 Export to CSV</button>
+                        <button class="btn btn-success" onclick="exportToGoogleSheets()">📈 Export to Google Sheets</button>
+                        <button class="btn btn-secondary" onclick="clearTradeHistory()">🗑️ Clear History</button>
+                    </div>
+                </div>
+                <div id="tradeJournal" class="trade-journal">
+                    <div style="text-align: center; color: #7f8c8d; padding: 40px;">
+                        No trades in journal yet. Close some trades to see them here.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Trading Statistics -->
+            <div class="trade-section">
+                <h3>📈 Trading Statistics</h3>
+                <div class="form-row">
+                    <div class="summary-card">
+                        <h3>Total Trades</h3>
+                        <div class="value" id="statTotalTrades">0</div>
+                    </div>
+                    <div class="summary-card positive">
+                        <h3>Winning Trades</h3>
+                        <div class="value" id="statWinningTrades">0</div>
+                    </div>
+                    <div class="summary-card negative">
+                        <h3>Losing Trades</h3>
+                        <div class="value" id="statLosingTrades">0</div>
+                    </div>
+                    <div class="summary-card">
+                        <h3>Win Rate</h3>
+                        <div class="value" id="statWinRate">0%</div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="summary-card positive">
+                        <h3>Total Profit</h3>
+                        <div class="value" id="statTotalProfit">$0</div>
+                    </div>
+                    <div class="summary-card negative">
+                        <h3>Total Loss</h3>
+                        <div class="value" id="statTotalLoss">$0</div>
+                    </div>
+                    <div class="summary-card">
+                        <h3>Net P&L</h3>
+                        <div class="value" id="statNetPL">$0</div>
+                    </div>
+                    <div class="summary-card">
+                        <h3>Profit Factor</h3>
+                        <div class="value" id="statProfitFactor">0.00</div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -709,6 +969,9 @@
         // Global variables
         let realSectorData = {};
         let isLoading = false;
+        let activeTrades = [];
+        let tradeHistory = [];
+        let tradeIdCounter = 1;
         let accountData = {
             totalAccount: 25000,
             buyingPower: 25000,
@@ -718,13 +981,16 @@
             stats: {
                 totalTrades: 0,
                 winningTrades: 0,
+                losingTrades: 0,
                 totalProfit: 0,
-                totalLoss: 0
+                totalLoss: 0,
+                netPL: 0
             }
         };
 
-        // Sector ETF mappings
+        // Complete sector ETF mappings - ALL POSSIBLE SECTORS
         const sectorETFs = {
+            // GICS Sectors
             'Technology': 'XLK',
             'Healthcare': 'XLV', 
             'Financials': 'XLF',
@@ -735,12 +1001,81 @@
             'Materials': 'XLB',
             'Real Estate': 'XLRE',
             'Consumer Staples': 'XLP',
-            'Communication Services': 'XLC'
+            'Communication Services': 'XLC',
+            
+            // Additional Sector ETFs
+            'Semiconductors': 'SMH',
+            'Software': 'IGV',
+            'Biotechnology': 'IBB',
+            'Regional Banks': 'KRE',
+            'Insurance': 'KIE',
+            'Oil & Gas': 'XOP',
+            'Clean Energy': 'ICLN',
+            'Gold Miners': 'GDX',
+            'Homebuilders': 'ITB',
+            'Retail': 'XRT',
+            'Transportation': 'IYT',
+            'Aerospace & Defense': 'ITA',
+            'Cybersecurity': 'HACK',
+            'Cloud Computing': 'SKYY',
+            'Gaming': 'ESPO',
+            'Electric Vehicles': 'DRIV',
+            'Robotics & AI': 'ROBO',
+            'Infrastructure': 'IFRA',
+            'Water': 'PHO',
+            'Agriculture': 'MOO'
         };
 
         // Batch definitions for strategic loading
-        const batch1Sectors = ['Technology', 'Healthcare', 'Financials', 'Energy', 'Utilities'];
-        const batch2Sectors = ['Materials', 'Real Estate', 'Consumer Discretionary', 'Consumer Staples', 'Industrials', 'Communication Services'];
+        const batch1Sectors = ['Technology', 'Healthcare', 'Financials', 'Energy', 'Utilities', 'Materials', 'Consumer Discretionary'];
+        const batch2Sectors = ['Real Estate', 'Consumer Staples', 'Industrials', 'Communication Services', 'Semiconductors', 'Software', 'Biotechnology'];
+        const batch3Sectors = ['Regional Banks', 'Insurance', 'Oil & Gas', 'Clean Energy', 'Gold Miners', 'Homebuilders', 'Retail'];
+        const batch4Sectors = ['Transportation', 'Aerospace & Defense', 'Cybersecurity', 'Cloud Computing', 'Gaming', 'Electric Vehicles', 'Robotics & AI'];
+        const batch5Sectors = ['Infrastructure', 'Water', 'Agriculture'];
+
+        // Sample stock data for recommendations (with market cap)
+        const sampleStocks = {
+            'Technology': [
+                { symbol: 'AAPL', price: 175.50, marketCap: 2800000, name: 'Apple Inc.' },
+                { symbol: 'MSFT', price: 380.25, marketCap: 2850000, name: 'Microsoft Corp.' },
+                { symbol: 'NVDA', price: 450.75, marketCap: 1100000, name: 'NVIDIA Corp.' },
+                { symbol: 'AMD', price: 95.30, marketCap: 155000, name: 'Advanced Micro Devices' },
+                { symbol: 'INTC', price: 45.20, marketCap: 190000, name: 'Intel Corp.' },
+                { symbol: 'PLTR', price: 18.45, marketCap: 38000, name: 'Palantir Technologies' }
+            ],
+            'Healthcare': [
+                { symbol: 'JNJ', price: 165.80, marketCap: 440000, name: 'Johnson & Johnson' },
+                { symbol: 'UNH', price: 520.40, marketCap: 490000, name: 'UnitedHealth Group' },
+                { symbol: 'PFE', price: 32.15, marketCap: 180000, name: 'Pfizer Inc.' },
+                { symbol: 'ABBV', price: 155.90, marketCap: 275000, name: 'AbbVie Inc.' },
+                { symbol: 'TMO', price: 520.75, marketCap: 205000, name: 'Thermo Fisher Scientific' },
+                { symbol: 'MRNA', price: 68.30, marketCap: 26000, name: 'Moderna Inc.' }
+            ],
+            'Financials': [
+                { symbol: 'JPM', price: 155.25, marketCap: 450000, name: 'JPMorgan Chase' },
+                { symbol: 'BAC', price: 35.80, marketCap: 290000, name: 'Bank of America' },
+                { symbol: 'WFC', price: 48.90, marketCap: 180000, name: 'Wells Fargo' },
+                { symbol: 'GS', price: 385.60, marketCap: 130000, name: 'Goldman Sachs' },
+                { symbol: 'MS', price: 88.45, marketCap: 145000, name: 'Morgan Stanley' },
+                { symbol: 'SOFI', price: 8.75, marketCap: 8500, name: 'SoFi Technologies' }
+            ],
+            'Energy': [
+                { symbol: 'XOM', price: 115.30, marketCap: 485000, name: 'Exxon Mobil' },
+                { symbol: 'CVX', price: 158.75, marketCap: 295000, name: 'Chevron Corp.' },
+                { symbol: 'COP', price: 125.40, marketCap: 165000, name: 'ConocoPhillips' },
+                { symbol: 'SLB', price: 48.20, marketCap: 68000, name: 'Schlumberger' },
+                { symbol: 'HAL', price: 35.60, marketCap: 32000, name: 'Halliburton' },
+                { symbol: 'OXY', price: 62.85, marketCap: 58000, name: 'Occidental Petroleum' }
+            ],
+            'Consumer Discretionary': [
+                { symbol: 'AMZN', price: 145.75, marketCap: 1500000, name: 'Amazon.com Inc.' },
+                { symbol: 'TSLA', price: 185.50, marketCap: 590000, name: 'Tesla Inc.' },
+                { symbol: 'HD', price: 335.20, marketCap: 345000, name: 'Home Depot' },
+                { symbol: 'MCD', price: 285.90, marketCap: 210000, name: 'McDonald\'s Corp.' },
+                { symbol: 'NKE', price: 98.75, marketCap: 155000, name: 'Nike Inc.' },
+                { symbol: 'F', price: 12.45, marketCap: 49000, name: 'Ford Motor Co.' }
+            ]
+        };
 
         // Console logging
         function log(message, type = 'info') {
@@ -939,15 +1274,15 @@
                 switch (strategy) {
                     case 'fast':
                         sectorsToLoad = batch1Sectors;
-                        log('Fast Load: Loading 5 key sectors instantly', 'info');
+                        log('Fast Load: Loading key sectors', 'info');
                         break;
                     case 'smart':
                         sectorsToLoad = Object.keys(sectorETFs);
-                        log('Smart Load: Loading all 11 sectors with rate limit management', 'info');
+                        log('Smart Load: Loading ALL sectors with rate limit management', 'info');
                         break;
                     case 'batch':
                         sectorsToLoad = batch1Sectors;
-                        log('Batch Load: Loading first 5 sectors', 'info');
+                        log('Batch Load: Loading first batch', 'info');
                         document.getElementById('batch2Button').style.display = 'inline-block';
                         break;
                 }
@@ -995,7 +1330,7 @@
             batch2Button.textContent = '⏳ Loading Batch 2...';
 
             try {
-                log('Loading remaining 6 sectors...', 'info');
+                log('Loading batch 2 sectors...', 'info');
                 const newData = await fetchSectorData(batch2Sectors, 'batch', params);
                 realSectorData = { ...realSectorData, ...newData };
                 
@@ -1004,10 +1339,10 @@
                 
                 const dateRange = `${params.startDate} to ${params.endDate}`;
                 const analysisDesc = `${params.periodType} (${params.periodLength} period${params.periodLength > 1 ? 's' : ''})`;
-                updateDataStatus(`✅ Complete Dataset Loaded! ${Object.keys(realSectorData).length} sectors • ${analysisDesc} • ${dateRange}`, 'success');
+                updateDataStatus(`✅ Extended Dataset Loaded! ${Object.keys(realSectorData).length} sectors • ${analysisDesc} • ${dateRange}`, 'success');
                 
                 batch2Button.style.display = 'none';
-                log('All sectors loaded successfully!', 'success');
+                log('Batch 2 sectors loaded successfully!', 'success');
 
             } catch (error) {
                 log(`Error loading batch 2: ${error.message}`, 'error');
@@ -1066,12 +1401,14 @@
         // Update stock picks based on sector performance
         function updateStockPicks(sectorData, params) {
             const picksContainer = document.getElementById('stockRecommendations');
+            const smallAccountContainer = document.getElementById('smallAccountStocks');
             const changeKey = getChangeKey(params.periodType);
             const sectors = Object.entries(sectorData).sort((a, b) => b[1][changeKey] - a[1][changeKey]);
             
             const dateRange = `${params.startDate} to ${params.endDate}`;
             const periodDesc = `${params.periodType} (${params.periodLength} period${params.periodLength > 1 ? 's' : ''})`;
             
+            // Main stock recommendations
             let html = '<h2>Stock Recommendations</h2>';
             html += `<p style="color: #7f8c8d; margin-bottom: 20px; text-align: center;">${periodDesc} • ${dateRange}</p>`;
             
@@ -1085,6 +1422,9 @@
             } else {
                 topSectors.forEach(([sectorName, data]) => {
                     const change = data[changeKey];
+                    const stocks = sampleStocks[sectorName] || [];
+                    const topStocks = stocks.filter(stock => stock.marketCap > 100000).slice(0, 3);
+                    
                     html += `
                         <div class="opportunity-card long">
                             <h4>🎯 ${sectorName} Sector (${data.symbol})</h4>
@@ -1093,6 +1433,7 @@
                             <p><strong>Strategy:</strong> Look for breakout stocks in this strong sector</p>
                             <p><strong>Focus:</strong> Stocks above $100M market cap with volume expansion</p>
                             <p><strong>Timeframe:</strong> ${periodDesc}</p>
+                            ${topStocks.length > 0 ? `<p><strong>Sample Stocks:</strong> ${topStocks.map(s => `${s.symbol} ($${s.price}) - $${(s.marketCap/1000).toFixed(0)}B`).join(', ')}</p>` : ''}
                         </div>
                     `;
                 });
@@ -1109,6 +1450,9 @@
             } else {
                 bottomSectors.forEach(([sectorName, data]) => {
                     const change = data[changeKey];
+                    const stocks = sampleStocks[sectorName] || [];
+                    const topStocks = stocks.filter(stock => stock.marketCap > 100000).slice(0, 3);
+                    
                     html += `
                         <div class="opportunity-card short">
                             <h4>📉 ${sectorName} Sector (${data.symbol})</h4>
@@ -1117,6 +1461,7 @@
                             <p><strong>Strategy:</strong> Look for breakdown stocks in this weak sector</p>
                             <p><strong>Focus:</strong> Stocks breaking key support levels with volume</p>
                             <p><strong>Timeframe:</strong> ${periodDesc}</p>
+                            ${topStocks.length > 0 ? `<p><strong>Sample Stocks:</strong> ${topStocks.map(s => `${s.symbol} ($${s.price}) - $${(s.marketCap/1000).toFixed(0)}B`).join(', ')}</p>` : ''}
                         </div>
                     `;
                 });
@@ -1124,6 +1469,377 @@
             html += '</div>';
             
             picksContainer.innerHTML = html;
+
+            // Small Account Stocks (Under $70)
+            let smallAccountHtml = '<h2>Small Account Stocks (Under $70)</h2>';
+            smallAccountHtml += `<p style="color: #7f8c8d; margin-bottom: 20px; text-align: center;">${periodDesc} • ${dateRange} • Stocks under $70 for small accounts</p>`;
+            
+            // Get stocks under $70 from top performing sectors
+            const smallAccountStocks = [];
+            topSectors.forEach(([sectorName, data]) => {
+                const stocks = sampleStocks[sectorName] || [];
+                const affordableStocks = stocks.filter(stock => stock.price < 70 && stock.marketCap > 100000);
+                affordableStocks.forEach(stock => {
+                    smallAccountStocks.push({
+                        ...stock,
+                        sector: sectorName,
+                        sectorPerformance: data[changeKey]
+                    });
+                });
+            });
+
+            if (smallAccountStocks.length === 0) {
+                smallAccountHtml += '<p style="color: #7f8c8d; text-align: center; padding: 40px;">No stocks under $70 found in top performing sectors with market cap > $100M.</p>';
+            } else {
+                smallAccountStocks.sort((a, b) => b.sectorPerformance - a.sectorPerformance).forEach(stock => {
+                    smallAccountHtml += `
+                        <div class="opportunity-card long">
+                            <h4>💰 ${stock.symbol} - ${stock.name}</h4>
+                            <p><strong>Price:</strong> $${stock.price.toFixed(2)} (Under $70 ✓)</p>
+                            <p><strong>Market Cap:</strong> $${(stock.marketCap/1000).toFixed(1)}B</p>
+                            <p><strong>Sector:</strong> ${stock.sector} (+${stock.sectorPerformance.toFixed(2)}%)</p>
+                            <p><strong>Small Account Friendly:</strong> Affordable entry with institutional quality</p>
+                            <p><strong>Strategy:</strong> Look for breakouts in strong sector momentum</p>
+                        </div>
+                    `;
+                });
+            }
+            
+            smallAccountContainer.innerHTML = smallAccountHtml;
+        }
+
+        // Position sizing calculator
+        function calculatePosition() {
+            const symbol = document.getElementById('calcSymbol').value.toUpperCase();
+            const entryPrice = parseFloat(document.getElementById('calcEntryPrice').value);
+            const stopLoss = parseFloat(document.getElementById('calcStopLoss').value);
+            const riskPercent = parseFloat(document.getElementById('calcRiskPercent').value);
+            
+            if (!symbol || !entryPrice || !stopLoss || !riskPercent) {
+                log('Please fill in all calculator fields', 'warning');
+                return;
+            }
+            
+            if (entryPrice <= stopLoss) {
+                log('Entry price must be higher than stop loss for long positions', 'warning');
+                return;
+            }
+            
+            const riskPerShare = entryPrice - stopLoss;
+            const totalRiskAmount = (accountData.totalAccount * riskPercent) / 100;
+            const shares = Math.floor(totalRiskAmount / riskPerShare);
+            const positionValue = shares * entryPrice;
+            const actualRisk = shares * riskPerShare;
+            const actualRiskPercent = (actualRisk / accountData.totalAccount) * 100;
+            
+            const resultDiv = document.getElementById('calculatorResult');
+            resultDiv.style.display = 'block';
+            resultDiv.innerHTML = `
+                <h4>Position Size Calculation for ${symbol}</h4>
+                <p><strong>Shares to Buy:</strong> ${shares.toLocaleString()}</p>
+                <p><strong>Position Value:</strong> $${positionValue.toLocaleString()}</p>
+                <p><strong>Risk per Share:</strong> $${riskPerShare.toFixed(2)}</p>
+                <p><strong>Total Risk Amount:</strong> $${actualRisk.toLocaleString()}</p>
+                <p><strong>Actual Risk %:</strong> ${actualRiskPercent.toFixed(2)}%</p>
+                <p><strong>Remaining Buying Power:</strong> $${(accountData.buyingPower - positionValue).toLocaleString()}</p>
+            `;
+            
+            log(`Position calculated: ${shares} shares of ${symbol} at $${entryPrice}`, 'success');
+        }
+
+        // Enter trade
+        function enterTrade() {
+            const symbol = document.getElementById('tradeSymbol').value.toUpperCase();
+            const entryPrice = parseFloat(document.getElementById('tradeEntryPrice').value);
+            const shares = parseInt(document.getElementById('tradeShares').value);
+            const stopLoss = parseFloat(document.getElementById('tradeStopLoss').value);
+            const ema9 = parseFloat(document.getElementById('trade9EMA').value);
+            const ema21 = parseFloat(document.getElementById('trade21EMA').value);
+            const ema50 = parseFloat(document.getElementById('trade50EMA').value);
+            const tradeType = document.getElementById('tradeType').value;
+            
+            if (!symbol || !entryPrice || !shares || !stopLoss) {
+                log('Please fill in required trade fields', 'warning');
+                return;
+            }
+            
+            const positionValue = shares * entryPrice;
+            
+            if (positionValue > accountData.buyingPower) {
+                log('Insufficient buying power for this trade', 'warning');
+                return;
+            }
+            
+            const trade = {
+                id: tradeIdCounter++,
+                symbol: symbol,
+                type: tradeType,
+                shares: shares,
+                entryPrice: entryPrice,
+                currentPrice: entryPrice,
+                stopLoss: stopLoss,
+                ema9: ema9 || null,
+                ema21: ema21 || null,
+                ema50: ema50 || null,
+                entryDate: new Date(),
+                positionValue: positionValue,
+                unrealizedPL: 0
+            };
+            
+            activeTrades.push(trade);
+            accountData.buyingPower -= positionValue;
+            accountData.positionsValue += positionValue;
+            
+            updateAccountDisplay();
+            updateActiveTradesDisplay();
+            updateCloseTradeSelect();
+            
+            // Clear form
+            document.getElementById('tradeSymbol').value = '';
+            document.getElementById('tradeEntryPrice').value = '';
+            document.getElementById('tradeShares').value = '';
+            document.getElementById('tradeStopLoss').value = '';
+            document.getElementById('trade9EMA').value = '';
+            document.getElementById('trade21EMA').value = '';
+            document.getElementById('trade50EMA').value = '';
+            
+            log(`Trade entered: ${tradeType.toUpperCase()} ${shares} shares of ${symbol} at $${entryPrice}`, 'success');
+        }
+
+        // Update active trades display
+        function updateActiveTradesDisplay() {
+            const tbody = document.getElementById('activeTradesBody');
+            
+            if (activeTrades.length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="11" style="text-align: center; color: #7f8c8d; padding: 40px;">
+                            No active trades. Enter a trade to see it here.
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+            
+            let html = '';
+            activeTrades.forEach(trade => {
+                const pl = (trade.currentPrice - trade.entryPrice) * trade.shares;
+                const plClass = pl >= 0 ? 'positive' : 'negative';
+                const plSign = pl >= 0 ? '+' : '';
+                
+                html += `
+                    <tr>
+                        <td><strong>${trade.symbol}</strong></td>
+                        <td>${trade.type.toUpperCase()}</td>
+                        <td>${trade.shares.toLocaleString()}</td>
+                        <td>$${trade.entryPrice.toFixed(2)}</td>
+                        <td>$${trade.currentPrice.toFixed(2)}</td>
+                        <td class="${plClass}"><strong>${plSign}$${pl.toFixed(2)}</strong></td>
+                        <td>$${trade.stopLoss.toFixed(2)}</td>
+                        <td>${trade.ema9 ? '$' + trade.ema9.toFixed(2) : '-'}</td>
+                        <td>${trade.ema21 ? '$' + trade.ema21.toFixed(2) : '-'}</td>
+                        <td>${trade.ema50 ? '$' + trade.ema50.toFixed(2) : '-'}</td>
+                        <td>
+                            <button class="btn btn-secondary" onclick="trailStop(${trade.id})" style="padding: 5px 10px; font-size: 12px;">Trail</button>
+                        </td>
+                    </tr>
+                `;
+            });
+            
+            tbody.innerHTML = html;
+        }
+
+        // Trail stop to 9 EMA
+        function trailStop(tradeId) {
+            const trade = activeTrades.find(t => t.id === tradeId);
+            if (trade && trade.ema9) {
+                trade.stopLoss = trade.ema9;
+                updateActiveTradesDisplay();
+                log(`Stop loss trailed to 9 EMA ($${trade.ema9.toFixed(2)}) for ${trade.symbol}`, 'success');
+            } else {
+                log('9 EMA not set for this trade', 'warning');
+            }
+        }
+
+        // Update close trade select
+        function updateCloseTradeSelect() {
+            const select = document.getElementById('closeTradeSelect');
+            select.innerHTML = '<option value="">Select active trade...</option>';
+            
+            activeTrades.forEach(trade => {
+                const pl = (trade.currentPrice - trade.entryPrice) * trade.shares;
+                const plText = pl >= 0 ? `+$${pl.toFixed(2)}` : `-$${Math.abs(pl).toFixed(2)}`;
+                select.innerHTML += `<option value="${trade.id}">${trade.symbol} (${trade.shares} shares) ${plText}</option>`;
+            });
+        }
+
+        // Close trade
+        function closeTrade() {
+            const tradeId = parseInt(document.getElementById('closeTradeSelect').value);
+            const exitPrice = parseFloat(document.getElementById('closeExitPrice').value);
+            const exitReason = document.getElementById('closeExitReason').value;
+            const notes = document.getElementById('closeTradeNotes').value;
+            
+            if (!tradeId || !exitPrice) {
+                log('Please select a trade and enter exit price', 'warning');
+                return;
+            }
+            
+            const tradeIndex = activeTrades.findIndex(t => t.id === tradeId);
+            if (tradeIndex === -1) {
+                log('Trade not found', 'error');
+                return;
+            }
+            
+            const trade = activeTrades[tradeIndex];
+            const pl = (exitPrice - trade.entryPrice) * trade.shares;
+            const rMultiple = Math.abs(pl / ((trade.entryPrice - trade.stopLoss) * trade.shares));
+            
+            const closedTrade = {
+                ...trade,
+                exitPrice: exitPrice,
+                exitDate: new Date(),
+                exitReason: exitReason,
+                notes: notes,
+                realizedPL: pl,
+                rMultiple: pl > 0 ? rMultiple : -rMultiple
+            };
+            
+            tradeHistory.push(closedTrade);
+            activeTrades.splice(tradeIndex, 1);
+            
+            // Update account
+            accountData.buyingPower += trade.positionValue;
+            accountData.positionsValue -= trade.positionValue;
+            accountData.dailyPL += pl;
+            
+            // Update stats
+            accountData.stats.totalTrades++;
+            if (pl > 0) {
+                accountData.stats.winningTrades++;
+                accountData.stats.totalProfit += pl;
+            } else {
+                accountData.stats.losingTrades++;
+                accountData.stats.totalLoss += Math.abs(pl);
+            }
+            accountData.stats.netPL = accountData.stats.totalProfit - accountData.stats.totalLoss;
+            
+            updateAccountDisplay();
+            updateActiveTradesDisplay();
+            updateCloseTradeSelect();
+            updateTradeJournal();
+            updateTradingStats();
+            
+            // Clear form
+            document.getElementById('closeTradeSelect').value = '';
+            document.getElementById('closeExitPrice').value = '';
+            document.getElementById('closeTradeNotes').value = '';
+            
+            const plText = pl >= 0 ? `+$${pl.toFixed(2)}` : `-$${Math.abs(pl).toFixed(2)}`;
+            log(`Trade closed: ${trade.symbol} for ${plText} (${rMultiple.toFixed(2)}R)`, pl >= 0 ? 'success' : 'error');
+        }
+
+        // Update trade journal
+        function updateTradeJournal() {
+            const journalDiv = document.getElementById('tradeJournal');
+            
+            if (tradeHistory.length === 0) {
+                journalDiv.innerHTML = `
+                    <div style="text-align: center; color: #7f8c8d; padding: 40px;">
+                        No trades in journal yet. Close some trades to see them here.
+                    </div>
+                `;
+                return;
+            }
+            
+            let html = '';
+            tradeHistory.slice().reverse().forEach(trade => {
+                const plClass = trade.realizedPL >= 0 ? 'profit' : 'loss';
+                const plText = trade.realizedPL >= 0 ? `+$${trade.realizedPL.toFixed(2)}` : `-$${Math.abs(trade.realizedPL).toFixed(2)}`;
+                
+                html += `
+                    <div class="journal-entry ${plClass}">
+                        <h4>${trade.symbol} - ${trade.type.toUpperCase()}</h4>
+                        <p><strong>Entry:</strong> $${trade.entryPrice.toFixed(2)} x ${trade.shares} shares</p>
+                        <p><strong>Exit:</strong> $${trade.exitPrice.toFixed(2)} (${trade.exitReason.replace('_', ' ')})</p>
+                        <p><strong>P&L:</strong> ${plText} (${trade.rMultiple.toFixed(2)}R)</p>
+                        <p><strong>Date:</strong> ${trade.entryDate.toLocaleDateString()} - ${trade.exitDate.toLocaleDateString()}</p>
+                        ${trade.notes ? `<p><strong>Notes:</strong> ${trade.notes}</p>` : ''}
+                    </div>
+                `;
+            });
+            
+            journalDiv.innerHTML = html;
+        }
+
+        // Update trading statistics
+        function updateTradingStats() {
+            document.getElementById('statTotalTrades').textContent = accountData.stats.totalTrades;
+            document.getElementById('statWinningTrades').textContent = accountData.stats.winningTrades;
+            document.getElementById('statLosingTrades').textContent = accountData.stats.losingTrades;
+            
+            const winRate = accountData.stats.totalTrades > 0 ? 
+                (accountData.stats.winningTrades / accountData.stats.totalTrades * 100) : 0;
+            document.getElementById('statWinRate').textContent = `${winRate.toFixed(1)}%`;
+            
+            document.getElementById('statTotalProfit').textContent = `$${accountData.stats.totalProfit.toLocaleString()}`;
+            document.getElementById('statTotalLoss').textContent = `$${accountData.stats.totalLoss.toLocaleString()}`;
+            document.getElementById('statNetPL').textContent = `$${accountData.stats.netPL.toLocaleString()}`;
+            
+            const profitFactor = accountData.stats.totalLoss > 0 ? 
+                (accountData.stats.totalProfit / accountData.stats.totalLoss) : 0;
+            document.getElementById('statProfitFactor').textContent = profitFactor.toFixed(2);
+        }
+
+        // Export trade journal to CSV
+        function exportTradeJournal() {
+            if (tradeHistory.length === 0) {
+                log('No trades to export', 'warning');
+                return;
+            }
+            
+            let csvContent = 'Symbol,Type,Shares,Entry_Price,Exit_Price,Entry_Date,Exit_Date,Exit_Reason,P&L,R_Multiple,Notes\n';
+            
+            tradeHistory.forEach(trade => {
+                csvContent += `${trade.symbol},${trade.type},${trade.shares},${trade.entryPrice},${trade.exitPrice},${trade.entryDate.toISOString().split('T')[0]},${trade.exitDate.toISOString().split('T')[0]},${trade.exitReason},${trade.realizedPL.toFixed(2)},${trade.rMultiple.toFixed(2)},"${trade.notes || ''}"\n`;
+            });
+            
+            const blob = new Blob([csvContent], { type: 'text/csv' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `trade_journal_${new Date().toISOString().split('T')[0]}.csv`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(url);
+            
+            log('Trade journal exported to CSV successfully!', 'success');
+        }
+
+        // Export to Google Sheets (CSV format)
+        function exportToGoogleSheets() {
+            exportTradeJournal(); // Same as CSV export
+            log('CSV file ready for Google Sheets import!', 'success');
+        }
+
+        // Clear trade history
+        function clearTradeHistory() {
+            if (confirm('Are you sure you want to clear all trade history? This cannot be undone.')) {
+                tradeHistory = [];
+                accountData.stats = {
+                    totalTrades: 0,
+                    winningTrades: 0,
+                    losingTrades: 0,
+                    totalProfit: 0,
+                    totalLoss: 0,
+                    netPL: 0
+                };
+                updateTradeJournal();
+                updateTradingStats();
+                updateAccountDisplay();
+                log('Trade history cleared', 'warning');
+            }
         }
 
         // Export data to CSV
@@ -1151,7 +1867,7 @@
             document.body.removeChild(a);
             window.URL.revokeObjectURL(url);
             
-            log('Data exported to CSV successfully!', 'success');
+            log('Sector data exported to CSV successfully!', 'success');
         }
 
         // Update account amount
@@ -1159,8 +1875,9 @@
             const newAmount = prompt('Enter new account amount:', accountData.totalAccount);
             if (newAmount && !isNaN(newAmount)) {
                 const amount = parseFloat(newAmount);
+                const difference = amount - accountData.totalAccount;
                 accountData.totalAccount = amount;
-                accountData.buyingPower = amount - accountData.positionsValue;
+                accountData.buyingPower += difference;
                 updateAccountDisplay();
                 log(`Account amount updated to $${amount.toLocaleString()}`, 'success');
             }
@@ -1180,7 +1897,7 @@
             
             // Update profit factor
             const profitFactor = accountData.stats.totalLoss > 0 ? 
-                (accountData.stats.totalProfit / Math.abs(accountData.stats.totalLoss)) : 0;
+                (accountData.stats.totalProfit / accountData.stats.totalLoss) : 0;
             document.getElementById('profitFactor').textContent = profitFactor.toFixed(2);
         }
 
@@ -1218,10 +1935,12 @@
             document.getElementById('endDate').value = today.toISOString().split('T')[0];
             
             updateAccountDisplay();
+            updateTradingStats();
             log('Complete Trading Dashboard Initialized', 'success');
             log('Alpha Vantage API Ready - Choose your loading strategy', 'info');
             log('Free Tier Limits: 5 calls/minute, 100/day', 'warning');
             log('Default date range set: Last 30 days', 'info');
+            log(`Total sectors available: ${Object.keys(sectorETFs).length}`, 'info');
         });
     </script>
 </body>
